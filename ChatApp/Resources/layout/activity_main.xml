@@ -1,0 +1,91 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorDarkGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        android:layout_width="match_parent"
+        android:background = "@color/colorDarkGrey"
+        android:layout_height="?android:attr/actionBarSize">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/titleMain"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorGreen"
+                android:layout_centerInParent="true"
+                android:text="Private chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+         <android.support.v7.widget.RecyclerView
+          android:layout_above="@+id/bottomBarLayout"
+        android:id="@+id/postRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+    />
+        <RelativeLayout
+            android:id="@+id/bottomBarLayout"
+            android:padding="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/messageImageView"
+                android:src="@drawable/message_green"
+                android:layout_toLeftOf="@+id/groupChatImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <ImageView
+                android:layout_marginHorizontal="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/groupChatImageView"
+                android:layout_toLeftOf="@+id/createImageView"
+                android:src="@drawable/group_chat_grey"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <ImageView
+                android:layout_marginHorizontal="10dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/createImageView"
+                android:src="@drawable/create"                
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <ImageView
+                android:layout_marginHorizontal="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/profileImageView"
+                android:layout_toRightOf="@+id/createImageView"
+                android:src="@drawable/profile_grey"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/settingsImageView"
+                android:layout_toRightOf="@+id/profileImageView"
+                android:src="@drawable/settings_grey"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+   
+   
+      
+</LinearLayout>

@@ -1,0 +1,115 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorDarkGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarSettings"
+        android:layout_width="match_parent"
+        android:background = "@color/colorDarkGrey"
+        android:layout_height="?android:attr/actionBarSize">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:id="@+id/backarrowSettingsImageView"
+                android:src="@drawable/backarrow"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+            <TextView
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorGreen"
+                android:layout_centerInParent="true"
+                android:text="Settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    
+    <ScrollView
+        android:layout_marginTop="60dp"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout     
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+            
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:layout_alignParentLeft="true"
+                    android:text="Notifications"
+                    android:textColor="@color/colorLightAsh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:layout_alignParentLeft="true"
+                    android:text="Private mode"
+                    android:textColor="@color/colorLightAsh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:layout_alignParentLeft="true"
+                    android:text="Default settings"
+                    android:textColor="@color/colorLightAsh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:layout_alignParentLeft="true"
+                    android:text="Pink mode"
+                    android:textColor="@color/colorLightAsh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                android:layout_marginTop="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:layout_alignParentLeft="true"
+                    android:text="Save"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorGreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/exitButton"
+            android:background="@drawable/roundbutton"
+            android:textAllCaps="false"
+            android:text="Exit"           
+            android:textColor="@color/colorLightAsh"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="20dp"
+            android:elevation="5dp"
+        />     
+    </RelativeLayout>
+    </LinearLayout>   
+    </ScrollView>   
+</LinearLayout>
