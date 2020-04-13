@@ -25,9 +25,6 @@ namespace ChatApp.Adapters
 
             //Setup your layout here
             View itemView = null;
-            //var id = Resource.Layout.__YOUR_ITEM_HERE;
-            //itemView = LayoutInflater.From(parent.Context).
-            //       Inflate(id, parent, false);
             itemView = LayoutInflater.From(parent.Context)
                 .Inflate(Resource.Layout.message_preview, parent, false);
 

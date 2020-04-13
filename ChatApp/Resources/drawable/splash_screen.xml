@@ -6,9 +6,8 @@
   </item>
 
   <item>
-    <bitmap
-        
-    android:src="@drawable/Splash"
+    <bitmap       
+        android:src="@drawable/splash"
         android:scaleType="centerCrop"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"

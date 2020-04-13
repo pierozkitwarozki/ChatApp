@@ -1,0 +1,89 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorDarkGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarFriends"
+        android:layout_width="match_parent"
+        android:background = "@color/colorDarkGrey"
+        android:layout_height="?android:attr/actionBarSize">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+             <ImageView
+                android:id="@+id/backarrowFriendsImageView"
+                android:src="@drawable/backarrow"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+            <TextView
+                android:id="@+id/friendsTitleTextView"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorGreen"
+                android:layout_centerInParent="true"
+                android:text="Friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/addFriendsImageView"
+                android:src="@drawable/plus"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+         <android.support.v7.widget.RecyclerView
+          android:layout_above="@+id/bottomBarLayout"
+        android:id="@+id/friendListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+    />
+        <RelativeLayout
+            android:id="@+id/bottomBarLayout"
+            android:padding="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText   
+                android:id="@+id/typeFriendFriendsTextView"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:elevation="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorLightAsh"
+                android:hint="Type friend..."
+                android:gravity="center"
+                android:textColorHint="@color/colorLightAsh"
+                android:textSize="12sp"
+                android:background="@drawable/curvededges_EditText"
+                />
+               
+        </RelativeLayout>
+    </RelativeLayout>
+
+   
+   
+      
+</LinearLayout>

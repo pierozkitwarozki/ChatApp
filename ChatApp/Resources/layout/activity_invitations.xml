@@ -1,0 +1,52 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorDarkGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarInvitations"
+        android:layout_width="match_parent"
+        android:background = "@color/colorDarkGrey"
+        android:layout_height="?android:attr/actionBarSize">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+             <ImageView
+                android:id="@+id/backarrowInvitationsImageView"
+                android:src="@drawable/backarrow"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+            <TextView
+                android:id="@+id/invitationsTitleTextView"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorGreen"
+                android:layout_centerInParent="true"
+                android:text="Invitations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+         <android.support.v7.widget.RecyclerView
+          android:layout_above="@+id/bottomBarLayout"
+        android:id="@+id/invitationsListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+    />
+    </RelativeLayout>
+    
+</LinearLayout>

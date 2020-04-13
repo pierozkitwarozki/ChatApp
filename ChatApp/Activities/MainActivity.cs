@@ -7,14 +7,16 @@ using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using ChatApp.Adapters;
 using System;
+using ChatApp.EventListeners;
+using ChatApp.DataModels;
 
 namespace ChatApp.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class MainActivity : AppCompatActivity
     {
-        Android.Support.V7.Widget.Toolbar toolbarMain;
-        List<ChatApp.DataModels.Message> messages;
+        //Controls
+        Android.Support.V7.Widget.Toolbar toolbarMain;       
         RecyclerView messagesRecyclerView;
         MessagePreviewAdapter messageAdapter;
         TextView toolbarMainTitle;
@@ -23,6 +25,15 @@ namespace ChatApp.Activities
         ImageView createImageView;
         ImageView profileImageView;
         ImageView settingsImageView;
+
+        //Listners
+        FullnameListener fullnameListener;
+        
+
+        //Data
+        List<ChatApp.DataModels.Message> messages;
+        
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,10 +41,13 @@ namespace ChatApp.Activities
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             messages = new List<ChatApp.DataModels.Message>();
+            fullnameListener = new FullnameListener();
+            
+            fullnameListener.FetchUser();
             CreateData();
             ConnectViews();
             SetupRecyclerView();
-            
+
         }
         private void SetupToolbar()
         {
@@ -160,6 +174,7 @@ namespace ChatApp.Activities
                  }
              );
         }
+        
 
 
     }

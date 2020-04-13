@@ -43,6 +43,5 @@ namespace ChatApp.Activities
             }
         }
 
-
     }
 }

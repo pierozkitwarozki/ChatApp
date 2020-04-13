@@ -10,6 +10,10 @@ using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using ChatApp.DataModels;
+using ChatApp.EventListeners;
+using Newtonsoft.Json;
+using Refractored.Controls;
 
 namespace ChatApp.Activities
 {
@@ -18,8 +22,14 @@ namespace ChatApp.Activities
     {
         //Controls
         Android.Support.V7.Widget.Toolbar toolbarProfile;
+        _BaseCircleImageView profileCircleImageView;
         ImageView backarrowProfileImageView;
         Button logOutButton;
+        TextView fullnameProfileTextView;
+        TextView friendsProfileTextView;
+        TextView invitationsProfileTextView;
+
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -36,8 +46,18 @@ namespace ChatApp.Activities
         private void ConnectViews()
         {
             SetupToolbar();
+            friendsProfileTextView = FindViewById<TextView>(Resource.Id.friendsProfileTextView);
+            invitationsProfileTextView = FindViewById<TextView>(Resource.Id.invitationsProfileTextView);
+            fullnameProfileTextView = FindViewById<TextView>(Resource.Id.fullnameProfileTextView);
+            profileCircleImageView = FindViewById<_BaseCircleImageView>(Resource.Id.profileCircleImageView);
             backarrowProfileImageView = FindViewById<ImageView>(Resource.Id.backarrowProfileImageView);
+            invitationsProfileTextView.Click += (s, args) =>
+              {
+                  StartActivity(typeof(InvitationsActivity));
+              };
             logOutButton = FindViewById<Button>(Resource.Id.logOutButton);
+            Helpers.Helper.GetCircleImage(Helpers.Helper.GetImageUrl(), profileCircleImageView);
+            fullnameProfileTextView.Text = Helpers.Helper.GetFullName();
             backarrowProfileImageView.Click += (s, args) =>
             {
                 StartActivity(typeof(MainActivity));
@@ -52,6 +72,11 @@ namespace ChatApp.Activities
                 StartActivity(typeof(LoginActivity));
                   FinishAffinity();
             };
+            friendsProfileTextView.Click += (s, args) =>
+            {               
+                StartActivity(typeof(FirendsActivity));
+            };
         }
+
     }
 }
