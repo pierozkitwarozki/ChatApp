@@ -17,9 +17,11 @@ namespace ChatApp.EventListeners
 {
     public class UserDataListener : Java.Lang.Object, IOnSuccessListener
     {
+        //This class implements retrieving single user data via event
+
         public event EventHandler<UserEventArgs> OnUserRetrieved;
         private User thisUser = new User();
-        public List<User> users = new List<User>();
+        public List<User> users { get; set; } = new List<User>();
 
         public class UserEventArgs : EventArgs
         {

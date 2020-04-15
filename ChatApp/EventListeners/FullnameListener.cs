@@ -15,22 +15,17 @@ using Firebase.Firestore;
 
 namespace ChatApp.EventListeners
 {
-    public class FullnameListener : Java.Lang.Object, IOnSuccessListener, IOnFailureListener
+    public class FullnameListener : Java.Lang.Object, IOnSuccessListener
     {
+        //This class implements fetching logged user data and saving it into 
+        //ISharedPreferences
         public void FetchUser()
         {
-             FirebaseBackend.FirebaseBackend.GetFireStore()
-                .Collection("users")
-                .Document(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid)
-                .Get()
-                .AddOnSuccessListener(this)
-                .AddOnFailureListener(this);
-        }
-
-
-        public void OnFailure(Java.Lang.Exception e)
-        {
-            throw new NotImplementedException();
+            FirebaseBackend.FirebaseBackend.GetFireStore()
+               .Collection("users")
+               .Document(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid)
+               .Get()
+               .AddOnSuccessListener(this);
         }
 
         public void OnSuccess(Java.Lang.Object result)

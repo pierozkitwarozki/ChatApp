@@ -60,6 +60,7 @@ namespace ChatApp.Adapters
 
     public class InvitationAdapterViewHolder : RecyclerView.ViewHolder
     {
+        //Controls
         public TextView namePreviewInviteXTextView { get; set; }
         public _BaseCircleImageView profilePreviewInviteXImageView { get; set; }
         public ImageView acceptFriendXImageView { get; set; }

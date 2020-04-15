@@ -40,15 +40,12 @@ namespace ChatApp.EventListeners
                         .GetFireStore()
                         .Collection("invitations")
                         .Document(friendId);
-                   
 
-                    IDictionary<string, Java.Lang.Object> updates = new Dictionary<string, Java.Lang.Object>();
-                    updates.Add(currentUserID, true);
-                    documentReference.Update(updates);
-
+                    documentReference.Update(currentUserID, true);
                 }
+                
             }
-            
+                   
         }
     }
 }

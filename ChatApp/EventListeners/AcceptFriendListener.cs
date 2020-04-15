@@ -16,6 +16,8 @@ namespace ChatApp.EventListeners
 {
     public class AcceptFriendListener : Java.Lang.Object
     {
+        //This class implements what happens after user decides to accept or decline invitation
+
         string currentUserID = FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid;
         public void AcceptFriend(string friendId)
         {
@@ -24,20 +26,14 @@ namespace ChatApp.EventListeners
                 .GetFireStore()
                 .Collection("friends")
                 .Document(currentUserID);
-
-            IDictionary<string, Java.Lang.Object> updates = new Dictionary<string, Java.Lang.Object>();
-            updates.Add(friendId, true);
-            documentReference.Update(updates);
+            documentReference.Update(friendId, true);
 
             DocumentReference documentReference2 =
                 FirebaseBackend.FirebaseBackend
                 .GetFireStore()
                 .Collection("friends")
                 .Document(friendId);
-
-            IDictionary<string, Java.Lang.Object> updates2 = new Dictionary<string, Java.Lang.Object>();
-            updates2.Add(currentUserID, true);
-            documentReference2.Update(updates2);
+            documentReference2.Update(currentUserID, true);
 
             DocumentReference documentReference3 =
                 FirebaseBackend.FirebaseBackend
@@ -45,9 +41,7 @@ namespace ChatApp.EventListeners
                 .Collection("invitations")
                 .Document(currentUserID);
 
-            IDictionary<string, Java.Lang.Object> updates3 = new Dictionary<string, Java.Lang.Object>();
-            updates3.Add(friendId, FieldValue.Delete());
-            documentReference3.Update(updates3);
+            documentReference3.Update(friendId, FieldValue.Delete());
 
         }
 
@@ -58,11 +52,7 @@ namespace ChatApp.EventListeners
                    .GetFireStore()
                    .Collection("invitations")
                    .Document(currentUserID);
-
-            IDictionary<string, Java.Lang.Object> updates3 = new Dictionary<string, Java.Lang.Object>();
-            updates3.Add(friendId, FieldValue.Delete());
-            documentReference3.Update(updates3);
-
+            documentReference3.Update(friendId, FieldValue.Delete());
         }
         
     }

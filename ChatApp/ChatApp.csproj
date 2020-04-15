@@ -74,15 +74,18 @@
     <Compile Include="DataModels\Message.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="EventListeners\AcceptFriendListener.cs" />
-    <Compile Include="EventListeners\FriendAddListener.cs" />
+    <Compile Include="EventListeners\FirendAddListener.cs" />
     <Compile Include="EventListeners\FriendsListener.cs" />
     <Compile Include="EventListeners\FullnameListener.cs" />
     <Compile Include="EventListeners\InvitationListener.cs" />
+    <Compile Include="EventListeners\SendMessageManageListener.cs" />
     <Compile Include="EventListeners\TaskComplitionListener.cs" />
     <Compile Include="EventListeners\UserDataListener.cs" />
     <Compile Include="FirebaseBackend\FirebaseBackend.cs" />
     <Compile Include="Fragments\AddFriendFragment.cs" />
+    <Compile Include="Fragments\ManageFriendFragment.cs" />
     <Compile Include="Fragments\ProgressDialogFragment.cs" />
+    <Compile Include="Fragments\SendMessageManageFragment.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -301,6 +304,19 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\invitation.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\manage_friend.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\delete_friend_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\send_message.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

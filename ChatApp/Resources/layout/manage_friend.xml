@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="25dp"
+    android:minHeight="300dp"
+    android:minWidth="300dp"
+    android:background="@color/colorDarkGrey"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImageManageImageView"
+        android:src="@drawable/add_image"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="70dp"
+        android:layout_height="70dp"/>
+    <TextView
+        android:id="@+id/profileFullNameManageTextView"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorGreen"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Jan Kowalski"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView          
+            android:layout_marginLeft="13dp"            
+            android:id="@+id/newMessageManageImageView"
+            android:src="@drawable/message_grey"
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
+            <TextView    
+            android:textColor="@color/colorLightAsh"
+            android:layout_marginBottom="40dp"
+            android:text="New message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout     
+            android:gravity="right"
+            android:layout_marginLeft="80dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+            android:layout_gravity="center_horizontal"
+            
+            android:id="@+id/deleteFriendImageView"
+            android:src="@drawable/delete_friend_grey"
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
+        
+        <TextView               
+            android:textColor="@color/colorLightAsh"
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+        
+        
+   
+    
+
+</LinearLayout>

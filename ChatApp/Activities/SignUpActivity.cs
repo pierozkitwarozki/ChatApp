@@ -286,6 +286,7 @@ namespace ChatApp.Activities
 
         private void SetupPrototipeCollections()
         {
+            //To będzie do zmiany
             DocumentReference reff = FirebaseBackend.FirebaseBackend.GetFireStore()
                 .Collection("invitations").Document(auth.CurrentUser.Uid);
             HashMap hash = new HashMap();

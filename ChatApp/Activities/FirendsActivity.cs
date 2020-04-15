@@ -28,10 +28,13 @@ namespace ChatApp.Activities
         ImageView backarrowFriendsImageView;
         ImageView addFriendsImageView;
         AddFriendFragment addFriendFragment;
+        ManageFriendFragment manageFriendFragment;
+        SendMessageManageFragment sendMessageManageFragment;
 
         //Data
         List<User> users;
-        FriendsListener friends;     
+        FriendsListener friends;
+        SendMessageManageListener sendMessageManageLisener;
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,11 +42,18 @@ namespace ChatApp.Activities
             SetContentView(Resource.Layout.activity_friends);
             users = new List<User>();
             friendsListAdapter = new FriendsListAdapter(users);
+            friendsListAdapter.ItemClick += FriendsListAdapter_ItemClick;
             GetFriends();
             ConnectViews();
             SetupRecyclerView();
             
         }
+
+        private void FriendsListAdapter_ItemClick(object sender, FriendsListAdapterClickEventArgs e)
+        {
+            ShowManageFriendDialog(e.Position);
+        }
+
         private void ConnectViews()
         {   
             friendListRecyclerView = FindViewById<RecyclerView>(Resource.Id.friendListRecyclerView);
@@ -60,7 +70,7 @@ namespace ChatApp.Activities
         private void AddFriendsImageView_Click(object sender, EventArgs e)
         {
             //Open Add Friend fragment
-            ShowDialog();
+            ShowAddFriendDialog();
         }
 
         private void SetupRecyclerView()
@@ -87,7 +97,7 @@ namespace ChatApp.Activities
             SetupRecyclerView();
         }
 
-        private void ShowDialog()
+        private void ShowAddFriendDialog()
         {
             addFriendFragment = new AddFriendFragment();
             var trans = SupportFragmentManager.BeginTransaction();
@@ -95,13 +105,31 @@ namespace ChatApp.Activities
             addFriendFragment.Show(trans, "add_friend");
         }
 
-        private void CloseDialog()
+        private void ShowManageFriendDialog(int position)
         {
-            if (addFriendFragment != null)
-            {
-                addFriendFragment.Dismiss();
-                addFriendFragment = null;
-            }
+            manageFriendFragment = new ManageFriendFragment(users[position]);
+            var trans = SupportFragmentManager.BeginTransaction();
+            manageFriendFragment.Cancelable = true;
+            manageFriendFragment.OnNewMessageClicked += ManageFriendFragment_OnNewMessageClicked;
+            manageFriendFragment.Show(trans, "manage_friend");
+        }
+
+        private void ManageFriendFragment_OnNewMessageClicked(object sender, ManageFriendFragment.NewMessageArgs e)
+        {
+            sendMessageManageFragment = new SendMessageManageFragment(e.UserArgs);
+            var trans = SupportFragmentManager.BeginTransaction();
+            sendMessageManageFragment.Cancelable = true;
+            manageFriendFragment.Dismiss();           
+            sendMessageManageFragment.OnMessageSent += SendMessageManageFragment_OnMessageSent;
+            sendMessageManageFragment.Show(trans, "send_message");
+        }
+
+        private void SendMessageManageFragment_OnMessageSent(object sender, SendMessageManageFragment.MessageArgs e)
+        {
+            sendMessageManageLisener = new SendMessageManageListener(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid.ToString(),
+                e.UserArgs.User_Id,
+                e.MessageBody);
+            sendMessageManageLisener.SendMessage();
         }
     }
 }

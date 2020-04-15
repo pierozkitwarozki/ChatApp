@@ -34,12 +34,12 @@ namespace ChatApp.Helpers
                 return false;
             }
         }
-        public static string GenerateRandomString(int lenght)
+        public static string GenerateRandomString(int length)
         {
             System.Random rand = new System.Random();
             char[] allowchars = "ABCDEFGHIJKLOMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
             string sResult = "";
-            for (int i = 0; i <= lenght; i++)
+            for (int i = 0; i <= length; i++)
             {
                 sResult += allowchars[rand.Next(0, allowchars.Length)];
             }
@@ -95,5 +95,8 @@ namespace ChatApp.Helpers
                 .Into(imageView);
             }    
         }
+
+        
+
     }
 }

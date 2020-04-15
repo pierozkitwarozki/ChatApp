@@ -16,6 +16,7 @@ namespace ChatApp.EventListeners
 {
     public class InvitationListener : Java.Lang.Object, IOnSuccessListener
     {
+        //This class implements fetching invitations
         string currentUserID = FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid;
         public UserDataListener listener = new UserDataListener();
 
