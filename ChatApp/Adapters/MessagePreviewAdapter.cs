@@ -12,9 +12,9 @@ namespace ChatApp.Adapters
     {
         public event EventHandler<MessagePreviewAdapterClickEventArgs> ItemClick;
         public event EventHandler<MessagePreviewAdapterClickEventArgs> ItemLongClick;
-        List<Message> previewList;
+        List<Conversation> previewList;
 
-        public MessagePreviewAdapter(List<Message> _previewList)
+        public MessagePreviewAdapter(List<Conversation> _previewList)
         {
             previewList = _previewList;
         }
@@ -39,9 +39,10 @@ namespace ChatApp.Adapters
 
             // Replace the contents of the view with that element
             var holder = viewHolder as MessagePreviewAdapterViewHolder;
-            holder.textPreviewTextView.Text = item.MessageShort;
+            holder.textPreviewTextView.Text = item.LastMessagePreview;
             holder.namePreviewTextView.Text = item.ProfileName;
-            holder.datePreviewTextView.Text = item.MessageDateTime.ToString();
+            Helpers.Helper.GetCircleImage(item.ProfileImageUrl, holder.profilePreviewImageView);
+            holder.datePreviewTextView.Text = item.LastMessageDate.ToString("dd MM yyyy HH:mm:ss");
         }
 
         public override int ItemCount => previewList.Count;

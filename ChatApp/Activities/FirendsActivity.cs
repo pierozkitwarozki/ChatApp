@@ -126,10 +126,12 @@ namespace ChatApp.Activities
 
         private void SendMessageManageFragment_OnMessageSent(object sender, SendMessageManageFragment.MessageArgs e)
         {
-            sendMessageManageLisener = new SendMessageManageListener(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid.ToString(),
-                e.UserArgs.User_Id,
-                e.MessageBody);
+             sendMessageManageLisener = new SendMessageManageListener(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid.ToString(),
+               e.UserArgs.User_Id,
+               e.BMessage.MessageBody);
             sendMessageManageLisener.SendMessage();
+            sendMessageManageFragment.Dismiss();
+
         }
     }
 }

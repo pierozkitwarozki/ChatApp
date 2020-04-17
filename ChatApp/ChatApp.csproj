@@ -64,20 +64,25 @@
     <Compile Include="Activities\InvitationsActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\PrivateChatActivity.cs" />
     <Compile Include="Activities\ProfileActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Adapters\FriendsListAdapter.cs" />
     <Compile Include="Adapters\InvitationAdapter.cs" />
+    <Compile Include="Adapters\MessageListAdapter.cs" />
     <Compile Include="Adapters\MessagePreviewAdapter.cs" />
-    <Compile Include="DataModels\Message.cs" />
+    <Compile Include="DataModels\BaseMessage.cs" />
+    <Compile Include="DataModels\Conversation.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="EventListeners\AcceptFriendListener.cs" />
+    <Compile Include="EventListeners\ConversationListener.cs" />
     <Compile Include="EventListeners\FirendAddListener.cs" />
     <Compile Include="EventListeners\FriendsListener.cs" />
     <Compile Include="EventListeners\FullnameListener.cs" />
     <Compile Include="EventListeners\InvitationListener.cs" />
+    <Compile Include="EventListeners\MessagesListener.cs" />
     <Compile Include="EventListeners\SendMessageManageListener.cs" />
     <Compile Include="EventListeners\TaskComplitionListener.cs" />
     <Compile Include="EventListeners\UserDataListener.cs" />
@@ -140,6 +145,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Compat">
       <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout">
+      <Version>1.1.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.3" />
@@ -317,6 +325,37 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\send_message.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_chat.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\attach_photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\message_cloud_white.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\message_cloud_green.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\item_message_recieved.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\item_message_sent.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

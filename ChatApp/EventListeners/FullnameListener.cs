@@ -39,6 +39,7 @@ namespace ChatApp.EventListeners
                 Helper.SaveFullname(fullname);
                 Helper.SaveUsername(username);
                 Helper.SaveImageUrl(image_url);
+                Helper.SaveUserId(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid);
             }
         }
     }

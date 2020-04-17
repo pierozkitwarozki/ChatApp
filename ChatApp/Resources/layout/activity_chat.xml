@@ -1,0 +1,101 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorDarkGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarPrivateChat"
+        android:layout_width="match_parent"
+        android:background = "@color/colorDarkGrey"
+        android:layout_height="?android:attr/actionBarSize">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+             <ImageView
+                android:id="@+id/backarrowPrivateChatImageView"
+                android:src="@drawable/backarrow"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+            <TextView
+                android:id="@+id/fullnamePrivateChateImageView"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/colorGreen"
+                android:layout_centerInParent="true"
+                android:text="Jan Kowalski"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+         <android.support.v7.widget.RecyclerView
+            android:layout_above="@+id/typeMessagePrivateChatLayout"
+            android:id="@+id/chatBodyPrivateChatRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+    />
+        <RelativeLayout           
+            android:id="@+id/typeMessagePrivateChatLayout"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:background="@color/colorLightGrey"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <EditText
+                android:id="@+id/typeMessagePrivateChatTextView"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="20dp"
+                android:elevation="5dp"
+                android:layout_width="270dp"
+                android:layout_centerInParent="true"
+                android:layout_height="35dp"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorLightAsh"
+                android:hint="Type message.."
+                android:gravity="center"
+                android:textColorHint="@color/colorLightAsh"
+                android:textSize="12sp"
+                android:background="@drawable/curvededges_EditText"
+                />
+            <ImageView  
+                android:id="@+id/sendMessagePrivateChatImageView"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/send"
+                android:layout_toRightOf="@+id/typeMessagePrivateChatTextView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+            <ImageView  
+                android:id="@+id/attachPhotoPrivateChatImageView"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/attach_photo"
+                android:layout_toLeftOf="@+id/typeMessagePrivateChatTextView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+               
+        </RelativeLayout>
+    </RelativeLayout>
+
+   
+   
+      
+</LinearLayout>

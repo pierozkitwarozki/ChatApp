@@ -12,10 +12,13 @@ using Android.Widget;
 
 namespace ChatApp.DataModels
 {
-    public class Message
+    public class BaseMessage
     {
         public string ProfileImageId { get; set; }
-        public string ProfileName { get; set; }
+        public string ProfileFromName { get; set; }
+        public string ProfileFromId { get; set; }
+        public string ProfileToId { get; set; }
+        public string MessageBody { get; set; }
         public string MessageShort { get; set; }
         public DateTime MessageDateTime { get; set; }
     }

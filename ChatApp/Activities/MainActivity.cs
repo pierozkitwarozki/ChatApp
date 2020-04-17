@@ -9,6 +9,8 @@ using ChatApp.Adapters;
 using System;
 using ChatApp.EventListeners;
 using ChatApp.DataModels;
+using Android.Content;
+using Newtonsoft.Json;
 
 namespace ChatApp.Activities
 {
@@ -28,10 +30,11 @@ namespace ChatApp.Activities
 
         //Listners
         FullnameListener fullnameListener;
-        
+        ConversationListener conversationListener;
+
 
         //Data
-        List<ChatApp.DataModels.Message> messages;
+        List<Conversation> conversations = new List<Conversation>();
         
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -40,15 +43,15 @@ namespace ChatApp.Activities
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            messages = new List<ChatApp.DataModels.Message>();
-            fullnameListener = new FullnameListener();
-            
+            fullnameListener = new FullnameListener();  
             fullnameListener.FetchUser();
-            CreateData();
+           // CreateData();
             ConnectViews();
+            GetConversations();
             SetupRecyclerView();
 
-        }
+        }        
+        
         private void SetupToolbar()
         {
             toolbarMain = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -100,82 +103,33 @@ namespace ChatApp.Activities
         private void SetupRecyclerView()
         {
             messagesRecyclerView.SetLayoutManager(new Android.Support.V7.Widget.LinearLayoutManager(messagesRecyclerView.Context));
-            messageAdapter = new MessagePreviewAdapter(messages);
+            messageAdapter = new MessagePreviewAdapter(conversations);
             messagesRecyclerView.SetAdapter(messageAdapter);
+            messageAdapter.ItemClick += MessageAdapter_ItemClick;
         }
 
-        private void CreateData()
+        private void MessageAdapter_ItemClick(object sender, MessagePreviewAdapterClickEventArgs e)
         {
-            messages.Add(
-                new ChatApp.DataModels.Message
-                {
-                    MessageDateTime = DateTime.Now,
-                    ProfileName = "Michael Jordan",
-                    MessageShort = "What's up??"
-                }
-            );
-            messages.Add(
-                new ChatApp.DataModels.Message
-                {
-                    MessageDateTime = DateTime.Now,
-                    ProfileName = "Michael Jordan",
-                    MessageShort = "What's up??"
-                }
-            );
-            messages.Add(
-                new ChatApp.DataModels.Message
-                {
-                    MessageDateTime = DateTime.Now,
-                    ProfileName = "Michael Jordan",
-                    MessageShort = "What's up??"
-                }
-            );
-            messages.Add(
-                new ChatApp.DataModels.Message
-                {
-                    MessageDateTime = DateTime.Now,
-                    ProfileName = "Michael Jordan",
-                    MessageShort = "What's up??"
-                }
-            ); messages.Add(
-                 new ChatApp.DataModels.Message
-                 {
-                     MessageDateTime = DateTime.Now,
-                     ProfileName = "Michael Jordan",
-                     MessageShort = "What's up??"
-                 }
-             ); messages.Add(
-                 new ChatApp.DataModels.Message
-                 {
-                     MessageDateTime = DateTime.Now,
-                     ProfileName = "Michael Jordan",
-                     MessageShort = "What's up??"
-                 }
-             ); messages.Add(
-                 new ChatApp.DataModels.Message
-                 {
-                     MessageDateTime = DateTime.Now,
-                     ProfileName = "Michael Jordan",
-                     MessageShort = "What's up??"
-                 }
-             ); messages.Add(
-                 new ChatApp.DataModels.Message
-                 {
-                     MessageDateTime = DateTime.Now,
-                     ProfileName = "Michael Jordan",
-                     MessageShort = "What's up??"
-                 }
-             ); messages.Add(
-                 new ChatApp.DataModels.Message
-                 {
-                     MessageDateTime = DateTime.Now,
-                     ProfileName = "Michael Jordan",
-                     MessageShort = "What's up??"
-                 }
-             );
+            Intent intent = new Intent(this, typeof(PrivateChatActivity));
+            string conversation = JsonConvert.SerializeObject(conversations[e.Position]);
+            intent.PutExtra("conv", conversation);
+            StartActivity(intent);
         }
-        
 
+        private void GetConversations()
+        {
+            conversationListener = new ConversationListener();
+            conversationListener.FetchConversations();
+            conversationListener.OnConversationRetrieved += (s, args) =>
+            {
+                conversations = args.ConversationChat;
+                if (conversations != null)
+                {
+                    conversations.Sort((x, y) => DateTime.Compare(y.LastMessageDate, x.LastMessageDate));
+                }
+                SetupRecyclerView();
+            };
+        }       
 
     }
 }

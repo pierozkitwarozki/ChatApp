@@ -65,12 +65,15 @@ namespace ChatApp.Activities
             };
             logOutButton.Click += (s, args) =>
             {
+                //MessagesListener listener = new MessagesListener();
+                //listener.RemoveListener();
                 FirebaseBackend.FirebaseBackend
                   .GetFireAuth()
                   .SignOut();
-
+                ConversationListener conv = new ConversationListener();
+                conv.RemoveListener();               
                 StartActivity(typeof(LoginActivity));
-                  FinishAffinity();
+                FinishAffinity();
             };
             friendsProfileTextView.Click += (s, args) =>
             {               

@@ -22,9 +22,9 @@ namespace ChatApp.Fragments
         User user;        
 
         public event EventHandler<MessageArgs> OnMessageSent;
-        public class MessageArgs: EventArgs
+        public class MessageArgs : EventArgs
         {
-            public string MessageBody { get; set; }
+            public BaseMessage BMessage { get; set; }
             public User UserArgs { get; set; }
         }
 
@@ -58,8 +58,8 @@ namespace ChatApp.Fragments
         {
             OnMessageSent?.Invoke(this, new MessageArgs
             {
-                UserArgs = user,
-                MessageBody = messageBodyManageFriendEditText.Text
+                BMessage = new BaseMessage { MessageBody = messageBodyManageFriendEditText.Text},
+                UserArgs = user
             }); 
         }
 

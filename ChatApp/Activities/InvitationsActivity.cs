@@ -51,6 +51,11 @@ namespace ChatApp.Activities
         {
             invitationsListRecyclerView = FindViewById<RecyclerView>(Resource.Id.invitationsListRecyclerView);
             backarrowInvitationsImageView = FindViewById<ImageView>(Resource.Id.backarrowInvitationsImageView);
+            backarrowInvitationsImageView.Click += (s, args) =>
+            {
+                StartActivity(typeof(ProfileActivity));
+                Finish();
+            };
         }
         private void SetupRecyclerView()
         {
