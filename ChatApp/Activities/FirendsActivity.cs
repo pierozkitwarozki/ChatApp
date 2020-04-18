@@ -34,9 +34,12 @@ namespace ChatApp.Activities
 
         //Data
         List<User> users;
+
+        //Listeners
         FriendsListener friends;
         FriendAddListener friendAddListener;
         SendMessageManageListener sendMessageManageListener;
+        DeleteFriendListener deleteFriendListener;
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -137,7 +140,34 @@ namespace ChatApp.Activities
             var trans = SupportFragmentManager.BeginTransaction();
             manageFriendFragment.Cancelable = true;
             manageFriendFragment.OnNewMessageClicked += ManageFriendFragment_OnNewMessageClicked;
+            manageFriendFragment.OnUserDeleteClicked += ManageFriendFragment_OnUserDeleteClicked;
             manageFriendFragment.Show(trans, "manage_friend");
+        }
+
+        private void ManageFriendFragment_OnUserDeleteClicked(object sender, ManageFriendFragment.NewMessageArgs e)
+        {
+            ConfirmYourDecision(e);
+        }
+
+        private void ConfirmYourDecision(ManageFriendFragment.NewMessageArgs e)
+        {
+            Android.Support.V7.App.AlertDialog.Builder deleteAlert =
+                new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AppCompatAlertDialogStyle);
+            deleteAlert.SetMessage("Delete " + e.UserArgs.Fullname + "?");
+
+            deleteAlert.SetNegativeButton("Cancel", (thisalert, args) =>
+            {
+                manageFriendFragment.Dismiss();
+            });
+            deleteAlert.SetPositiveButton("Delete", (thisalert, args) =>
+            {
+                deleteFriendListener = new DeleteFriendListener();
+                deleteFriendListener.DeleteUser(e.UserArgs.User_Id);
+                users.Remove(e.UserArgs);
+                friendsListAdapter.NotifyDataSetChanged();
+                manageFriendFragment.Dismiss();
+            });
+            deleteAlert.Show();
         }
 
         private void ManageFriendFragment_OnNewMessageClicked(object sender, ManageFriendFragment.NewMessageArgs e)

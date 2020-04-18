@@ -76,16 +76,34 @@ namespace ChatApp.Activities
             invitationAdapter.AcceptClick += (s, e) =>
             {
                 acceptFriendListener.AcceptFriend(users[e.Position].User_Id);
-                users.RemoveAt(e.Position);
+                Toast.MakeText(this, "You and " + users[e.Position].Fullname + " are now friends!", ToastLength.Short).Show();
+                users.RemoveAt(e.Position);               
                 invitationAdapter.NotifyDataSetChanged();
             };
             invitationAdapter.DeleteClick += (s, e) =>
             {
+                ConfirmYourDecision(e);
+            };
+            invitationsListRecyclerView.SetAdapter(invitationAdapter);
+        }
+
+        private void ConfirmYourDecision(InvitationAdapterClickEventArgs e)
+        {
+            Android.Support.V7.App.AlertDialog.Builder deleteAlert =
+                new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AppCompatAlertDialogStyle);
+            deleteAlert.SetMessage("Delete invitation from " + users[e.Position].Fullname + "?");
+
+            deleteAlert.SetNegativeButton("Cancel", (thisalert, args) =>
+            {
+                //close alertDialog (do nothing)
+            });
+            deleteAlert.SetPositiveButton("Delete", (thisalert, args) =>
+            {
                 acceptFriendListener.DeleteInvitation(users[e.Position].User_Id);
                 users.RemoveAt(e.Position);
                 invitationAdapter.NotifyDataSetChanged();
-            };
-            invitationsListRecyclerView.SetAdapter(invitationAdapter);
+            });
+            deleteAlert.Show();
         }
 
         private void GetFriends()

@@ -24,6 +24,7 @@ namespace ChatApp.Fragments
         User user;
 
         public event EventHandler<NewMessageArgs> OnNewMessageClicked;
+        public event EventHandler<NewMessageArgs> OnUserDeleteClicked;
         public class NewMessageArgs: EventArgs
         {
             public User UserArgs { get; set; }
@@ -64,6 +65,13 @@ namespace ChatApp.Fragments
                     UserArgs = user
                 });
             };
+            deleteFriendImageView.Click += (s, args) =>
+             {
+                 OnUserDeleteClicked?.Invoke(this, new NewMessageArgs
+                 {
+                     UserArgs = user
+                 });
+             };
         }
 
 

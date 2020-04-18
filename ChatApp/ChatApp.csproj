@@ -78,6 +78,7 @@
     <Compile Include="DataModels\User.cs" />
     <Compile Include="EventListeners\AcceptFriendListener.cs" />
     <Compile Include="EventListeners\ConversationListener.cs" />
+    <Compile Include="EventListeners\DeleteFriendListener.cs" />
     <Compile Include="EventListeners\FirendAddListener.cs" />
     <Compile Include="EventListeners\FriendsListener.cs" />
     <Compile Include="EventListeners\FullnameListener.cs" />
