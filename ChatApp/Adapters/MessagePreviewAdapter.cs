@@ -39,6 +39,10 @@ namespace ChatApp.Adapters
 
             // Replace the contents of the view with that element
             var holder = viewHolder as MessagePreviewAdapterViewHolder;
+            if (item.LastMessagePreview.Length > 45)
+            {
+                item.LastMessagePreview = item.LastMessagePreview.Substring(0, 45) + "...";
+            }
             holder.textPreviewTextView.Text = item.LastMessagePreview;
             holder.namePreviewTextView.Text = item.ProfileName;
             Helpers.Helper.GetCircleImage(item.ProfileImageUrl, holder.profilePreviewImageView);

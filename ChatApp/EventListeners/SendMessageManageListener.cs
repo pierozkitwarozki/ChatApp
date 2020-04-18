@@ -16,18 +16,28 @@ using Java.Util;
 
 namespace ChatApp.EventListeners
 {
-    public class SendMessageManageListener: Java.Lang.Object, IOnSuccessListener
+    public class SendMessageManageListener: Java.Lang.Object, IOnSuccessListener, IOnFailureListener
     {
         string conversationId;
         string from;
         string to;
         string body;
+        string toFullname;
+        string toUrl;
 
-        public SendMessageManageListener(string _from, string _to, string _text)
+        public event EventHandler<ResultEventArgs> OnSendingResult;
+        public class ResultEventArgs: EventArgs
+        {
+            public string Result { get; set; }
+        }
+
+        public SendMessageManageListener(string _from, string _to, string _text, string _toFullname, string _toUrl)
         {
             body = _text;
             from = _from;
             to = _to;
+            toFullname = _toFullname;
+            toUrl = _toUrl;
             conversationId = Helpers.Helper.GenerateChatId(from, to);
         }
 
@@ -35,8 +45,11 @@ namespace ChatApp.EventListeners
         public void SendMessage()
         {
             FirebaseBackend.FirebaseBackend.GetFireStore()
-                 .Collection("conversations")
-                 .Document(conversationId).Get().AddOnSuccessListener(this);    
+                 .Collection("chats")
+                 .Document(conversationId)
+                 .Get()
+                 .AddOnSuccessListener(this)
+                 .AddOnFailureListener(this);    
         }
 
         public void OnSuccess(Java.Lang.Object result)
@@ -47,7 +60,7 @@ namespace ChatApp.EventListeners
                    .Collection("do not exits")
                    .Document(Helpers.Helper.GenerateMessageId()).Id.ToString();
             DocumentReference documentRef = FirebaseBackend.FirebaseBackend.GetFireStore()
-             .Collection("conversations")
+             .Collection("chats")
              .Document(conversationId);
             if (!snapshot.Exists())
             {
@@ -58,6 +71,8 @@ namespace ChatApp.EventListeners
                     documentRef.Update(messageId.ToString() + "." + "message_date", DateTime.Now.ToString("dd MM yyyy HH:mm:ss"));
                     documentRef.Update(messageId.ToString() + "." + "from", from);
                     documentRef.Update(messageId.ToString() + "." + "to", to);
+                    documentRef.Update(messageId.ToString() + "." + "to_fullname", toFullname);
+                    documentRef.Update(messageId.ToString() + "." + "to_image_id", toUrl);
                     documentRef.Update(messageId.ToString() + "." + "from_fullname", Helpers.Helper.GetFullName());
                     documentRef.Update(messageId.ToString() + "." + "from_image_id", Helpers.Helper.GetImageUrl());
                     
@@ -71,12 +86,24 @@ namespace ChatApp.EventListeners
                 documentRef.Update(messageId.ToString() + "." + "message_date", DateTime.Now.ToString("dd MM yyyy HH:mm:ss"));
                 documentRef.Update(messageId.ToString() + "." + "from", from);
                 documentRef.Update(messageId.ToString() + "." + "to", to);
+                documentRef.Update(messageId.ToString() + "." + "to_fullname", toFullname);
+                documentRef.Update(messageId.ToString() + "." + "to_image_id", toUrl);
                 documentRef.Update(messageId.ToString() + "." + "from_fullname", Helpers.Helper.GetFullName());
                 documentRef.Update(messageId.ToString() + "." + "from_image_id", Helpers.Helper.GetImageUrl());
             }
+            OnSendingResult?.Invoke(this, new ResultEventArgs
+            {
+                Result = "Message sent successfuly"
+            });
             
         }
 
-
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            OnSendingResult?.Invoke(this, new ResultEventArgs
+            {
+                Result = "Error occured: " + e.Message
+            }); 
+        }
     }
 }

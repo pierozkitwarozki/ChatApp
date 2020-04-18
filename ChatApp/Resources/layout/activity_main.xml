@@ -29,7 +29,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-         <android.support.v7.widget.RecyclerView
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
           android:layout_above="@+id/bottomBarLayout"
         android:id="@+id/postRecyclerView"
         android:layout_width="match_parent"
@@ -39,6 +43,8 @@
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
     />
+        </android.support.v4.widget.SwipeRefreshLayout>
+         
         <RelativeLayout
             android:id="@+id/bottomBarLayout"
             android:padding="25dp"

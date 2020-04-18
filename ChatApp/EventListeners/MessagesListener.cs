@@ -26,12 +26,12 @@ namespace ChatApp.EventListeners
         {
             chatId = _chatID;
         }
-        public void FetchMessages()
+        public void FetchMessages(PrivateChatActivity activity)
         {
             FirebaseBackend.FirebaseBackend.GetFireStore()
-                .Collection("conversations")
+                .Collection("chats")
                 .Document(chatId)
-                .AddSnapshotListener(this);
+                .AddSnapshotListener(activity, this);
         }
 
         public event EventHandler<MessagesEventArgs> OnMessageRetrieved;
@@ -41,7 +41,7 @@ namespace ChatApp.EventListeners
         }
 
         public void OnEvent(Java.Lang.Object value, FirebaseFirestoreException error)
-        {          
+        {
                 var querySnapshot = (DocumentSnapshot)value;
                 if (querySnapshot.Exists())
                 {
@@ -79,16 +79,5 @@ namespace ChatApp.EventListeners
                     });
                 }
         }
-
-        public void RemoveListener()
-        {
-            var listener = FirebaseBackend.FirebaseBackend.GetFireStore()
-                .Collection("conversations")
-                .Document(chatId)
-                .AddSnapshotListener(this);
-
-            listener.Remove();
-        }
-
     }
 }

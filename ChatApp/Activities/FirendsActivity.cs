@@ -23,6 +23,7 @@ namespace ChatApp.Activities
     public class FirendsActivity : AppCompatActivity
     {
         //Controls
+        Android.Support.V7.Widget.Toolbar toolbarFriends;
         RecyclerView friendListRecyclerView;
         FriendsListAdapter friendsListAdapter;
         ImageView backarrowFriendsImageView;
@@ -34,7 +35,8 @@ namespace ChatApp.Activities
         //Data
         List<User> users;
         FriendsListener friends;
-        SendMessageManageListener sendMessageManageLisener;
+        FriendAddListener friendAddListener;
+        SendMessageManageListener sendMessageManageListener;
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,6 +50,11 @@ namespace ChatApp.Activities
             SetupRecyclerView();
             
         }
+        private void SetupToolbar()
+        {
+            toolbarFriends = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbarFriends);
+            SetSupportActionBar(toolbarFriends);
+        }
 
         private void FriendsListAdapter_ItemClick(object sender, FriendsListAdapterClickEventArgs e)
         {
@@ -55,7 +62,8 @@ namespace ChatApp.Activities
         }
 
         private void ConnectViews()
-        {   
+        {
+            SetupToolbar();
             friendListRecyclerView = FindViewById<RecyclerView>(Resource.Id.friendListRecyclerView);
             backarrowFriendsImageView = FindViewById<ImageView>(Resource.Id.backarrowFriendsImageView);
             addFriendsImageView = FindViewById<ImageView>(Resource.Id.addFriendsImageView);
@@ -99,10 +107,28 @@ namespace ChatApp.Activities
 
         private void ShowAddFriendDialog()
         {
+            friendAddListener = new FriendAddListener();           
             addFriendFragment = new AddFriendFragment();
             var trans = SupportFragmentManager.BeginTransaction();
-            addFriendFragment.Cancelable = true;
+            addFriendFragment.Cancelable = true;          
             addFriendFragment.Show(trans, "add_friend");
+            friendAddListener.OnResult += (s, args) =>
+            {
+                Toast.MakeText(this, args.Result, ToastLength.Long).Show();
+                addFriendFragment.Dismiss();
+            };
+            addFriendFragment.OnFriendAdd += (s, args) =>
+            {
+                if (args.FriendEmail != Helpers.Helper.GetEmail())
+                {
+                    friendAddListener.InviteFriend(this, args.FriendEmail);
+                }
+                else
+                {
+                    Toast.MakeText(this, "You cannot invite yourself", ToastLength.Short).Show();
+                }
+                
+            };
         }
 
         private void ShowManageFriendDialog(int position)
@@ -126,10 +152,16 @@ namespace ChatApp.Activities
 
         private void SendMessageManageFragment_OnMessageSent(object sender, SendMessageManageFragment.MessageArgs e)
         {
-             sendMessageManageLisener = new SendMessageManageListener(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid.ToString(),
+             sendMessageManageListener = new SendMessageManageListener(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid.ToString(),
                e.UserArgs.User_Id,
-               e.BMessage.MessageBody);
-            sendMessageManageLisener.SendMessage();
+               e.BMessage.MessageBody,
+               e.UserArgs.Fullname,
+               e.UserArgs.Image_Url);
+            sendMessageManageListener.OnSendingResult += (s, args) =>
+              {
+                  Toast.MakeText(this, args.Result, ToastLength.Long).Show();
+              };
+            sendMessageManageListener.SendMessage();
             sendMessageManageFragment.Dismiss();
 
         }

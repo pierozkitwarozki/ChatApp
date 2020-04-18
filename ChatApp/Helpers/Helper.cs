@@ -66,6 +66,19 @@ namespace ChatApp.Helpers
             editor.Apply();
         }
 
+        public static void SaveEmail(string email)
+        {
+            editor = preferences.Edit();
+            editor.PutString("email", email);
+            editor.Apply();
+        }
+        public static string GetEmail()
+        {
+            string email = "";
+            email = preferences.GetString("email", "");
+            return email;
+        }
+
         public static void SaveUserId(string id)
         {
             editor = preferences.Edit();
@@ -156,6 +169,12 @@ namespace ChatApp.Helpers
                 return id1 + "_" + id2;
             }
             else return id2 + "_" + id1;
+        }
+
+        public static void ClearISharedPrefernces()
+        {
+            editor.Clear();
+            editor.Apply();
         }
 
 

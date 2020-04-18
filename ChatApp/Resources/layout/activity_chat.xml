@@ -23,8 +23,18 @@
                 android:layout_marginLeft="12dp"
                 android:layout_width="16dp"
                 android:layout_height="16dp"/>
+             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImagePrivateChatImageView"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/backarrowPrivateChatImageView"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/fullnamePrivateChateTextView"
+                android:src="@drawable/avatar"
+                 android:layout_width="40dp"
+                 android:layout_height="40dp"/>
             <TextView
-                android:id="@+id/fullnamePrivateChateImageView"
+                android:id="@+id/fullnamePrivateChateTextView"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="@color/colorGreen"
@@ -58,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
             <EditText
-                android:id="@+id/typeMessagePrivateChatTextView"
+                android:id="@+id/typeMessagePrivateChatEditText"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="20dp"

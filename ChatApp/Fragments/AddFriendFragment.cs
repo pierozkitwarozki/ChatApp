@@ -19,8 +19,11 @@ namespace ChatApp.Fragments
         EditText inviteEditText;
         Button inviteButton;
 
-        //Listeners
-        FriendAddListener friendAddListener;
+        public event EventHandler<AddFriendEventArgs> OnFriendAdd;
+        public class AddFriendEventArgs: EventArgs
+        {
+            public string FriendEmail { get; set; }
+        }
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -31,7 +34,6 @@ namespace ChatApp.Fragments
         {
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-            friendAddListener = new FriendAddListener();
             View view = inflater.Inflate(Resource.Layout.add_friend, container, false);
             inviteButton = view.FindViewById<Button>(Resource.Id.inviteButton);
             inviteEditText = view.FindViewById<EditText>(Resource.Id.inviteEditText);
@@ -41,8 +43,12 @@ namespace ChatApp.Fragments
 
         private void InviteButton_Click(object sender, EventArgs e)
         {
-            friendAddListener.InviteFriend(inviteEditText.Text);
-            Dismiss();
+
+            OnFriendAdd?.Invoke(this, new AddFriendEventArgs
+            {
+                FriendEmail = inviteEditText.Text
+            });
+
         }
     }
 }

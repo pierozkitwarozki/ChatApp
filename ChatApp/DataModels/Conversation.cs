@@ -14,6 +14,7 @@ namespace ChatApp.DataModels
 {
     public class Conversation
     {
+        //This class implements conversation preview
         public string ChatId { get; set; }
         public string UserId { get; set; }
         public string ProfileName { get; set; }

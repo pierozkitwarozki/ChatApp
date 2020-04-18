@@ -15,6 +15,7 @@ using ChatApp.Adapters;
 using ChatApp.DataModels;
 using ChatApp.EventListeners;
 using Newtonsoft.Json;
+using Refractored.Controls;
 
 namespace ChatApp.Activities
 {
@@ -22,11 +23,13 @@ namespace ChatApp.Activities
     public class PrivateChatActivity : AppCompatActivity
     {
         //Views
-        TextView fullnamePrivateChateImageView;
-        EditText typeMessagePrivateChatTextView;
+        Android.Support.V7.Widget.Toolbar toolbarPrivateChat;
+        TextView fullnamePrivateChateTextView;
+        EditText typeMessagePrivateChatEditText;
         RecyclerView chatBodyPrivateChatRecyclerView;
         ImageView backarrowPrivateChatImageView;
         ImageView sendMessagePrivateChatImageView;
+        _BaseCircleImageView profileImagePrivateChatImageView;
 
         //Adapters
         MessageListAdapter messageListAdapter;
@@ -43,33 +46,30 @@ namespace ChatApp.Activities
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_chat);
-            // Create your application here
             conversation = JsonConvert.DeserializeObject<Conversation>(Intent.GetStringExtra("conv"));
-            //Console.WriteLine(user_to.Fullname + user_to.Email);
             ConnectViews();
             GetMessages();
             SetupRecyclerView();
         }
-        protected override void OnDestroy()
+
+        private void SetupToolbar()
         {
-            base.OnDestroy();
-            listener.RemoveListener();
-        }
-        protected override void OnStop()
-        {
-            base.OnStop();
-            listener.RemoveListener();
+            toolbarPrivateChat = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbarPrivateChat);
+            SetSupportActionBar(toolbarPrivateChat);
         }
 
         private void ConnectViews()
         {
-            fullnamePrivateChateImageView = FindViewById<TextView>(Resource.Id.fullnamePrivateChateImageView);
-            typeMessagePrivateChatTextView = FindViewById<EditText>(Resource.Id.typeMessagePrivateChatTextView);
+            SetupToolbar();
+            profileImagePrivateChatImageView = FindViewById<_BaseCircleImageView>(Resource.Id.profileImagePrivateChatImageView);
+            fullnamePrivateChateTextView = FindViewById<TextView>(Resource.Id.fullnamePrivateChateTextView);
+            typeMessagePrivateChatEditText = FindViewById<EditText>(Resource.Id.typeMessagePrivateChatEditText);
             chatBodyPrivateChatRecyclerView = FindViewById<RecyclerView>(Resource.Id.chatBodyPrivateChatRecyclerView);
             backarrowPrivateChatImageView = FindViewById<ImageView>(Resource.Id.backarrowPrivateChatImageView);
             sendMessagePrivateChatImageView = FindViewById<ImageView>(Resource.Id.sendMessagePrivateChatImageView);
             sendMessagePrivateChatImageView.Click += SendMessagePrivateChatImageView_Click;
-            fullnamePrivateChateImageView.Text = conversation.ProfileName;
+            fullnamePrivateChateTextView.Text = conversation.ProfileName;
+            Helpers.Helper.GetCircleImage(conversation.ProfileImageUrl, profileImagePrivateChatImageView);
             backarrowPrivateChatImageView.Click += BackarrowPrivateChatImageView_Click;
         }
 
@@ -83,7 +83,11 @@ namespace ChatApp.Activities
         private void SendMessagePrivateChatImageView_Click(object sender, EventArgs e)
         {
             send = new SendMessageManageListener(Helpers.Helper.GetUserId(),
-                conversation.UserId, typeMessagePrivateChatTextView.Text); ;
+                conversation.UserId, typeMessagePrivateChatEditText.Text,
+                conversation.ProfileName,
+                conversation.ProfileImageUrl); ;
+            typeMessagePrivateChatEditText.Text = "";
+            chatBodyPrivateChatRecyclerView.ScrollToPosition(chatBodyPrivateChatRecyclerView.GetAdapter().ItemCount - 1);
             send.SendMessage();
         }
 
@@ -99,7 +103,7 @@ namespace ChatApp.Activities
         {
             string id = conversation.ChatId;
             listener = new MessagesListener(id);
-            listener.FetchMessages();
+            listener.FetchMessages(this);
             listener.OnMessageRetrieved += (s, args) =>
               {
                   messagesList = args.MessageList;

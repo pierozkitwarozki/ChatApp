@@ -29,8 +29,6 @@ namespace ChatApp.Activities
         TextView friendsProfileTextView;
         TextView invitationsProfileTextView;
 
-
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -70,8 +68,7 @@ namespace ChatApp.Activities
                 FirebaseBackend.FirebaseBackend
                   .GetFireAuth()
                   .SignOut();
-                ConversationListener conv = new ConversationListener();
-                conv.RemoveListener();               
+                Helpers.Helper.ClearISharedPrefernces();
                 StartActivity(typeof(LoginActivity));
                 FinishAffinity();
             };

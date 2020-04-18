@@ -19,7 +19,6 @@
     <EditText
         android:textColor="@color/colorLightAsh"
         android:id="@+id/messageBodyManageFriendEditText"
-        android:inputType="textEmailAddress"
         android:layout_marginTop="20dp"
         android:minHeight="30dp"
         android:gravity="center"

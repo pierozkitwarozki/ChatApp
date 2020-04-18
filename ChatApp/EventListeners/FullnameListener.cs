@@ -21,6 +21,7 @@ namespace ChatApp.EventListeners
         //ISharedPreferences
         public void FetchUser()
         {
+            Helper.SaveUserId(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid);
             FirebaseBackend.FirebaseBackend.GetFireStore()
                .Collection("users")
                .Document(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid)
@@ -33,13 +34,16 @@ namespace ChatApp.EventListeners
             DocumentSnapshot snapshot = (DocumentSnapshot)result;
             if (snapshot.Exists())
             {
+                
                 string fullname = snapshot.Get("fullname").ToString();
                 string username = snapshot.Get("username").ToString();
+                string email = snapshot.Get("email").ToString();
                 string image_url = snapshot.Get("image_id") != null ? snapshot.Get("image_id").ToString() : "";
                 Helper.SaveFullname(fullname);
                 Helper.SaveUsername(username);
                 Helper.SaveImageUrl(image_url);
-                Helper.SaveUserId(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid);
+                Helper.SaveEmail(email);
+                
             }
         }
     }

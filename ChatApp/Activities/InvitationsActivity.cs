@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -17,10 +18,11 @@ using ChatApp.EventListeners;
 namespace ChatApp.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
-    public class InvitationsActivity : Activity
+    public class InvitationsActivity : AppCompatActivity
     {
 
         //Controls
+        Android.Support.V7.Widget.Toolbar toolbarInvitations;
         ImageView backarrowInvitationsImageView;
         RecyclerView invitationsListRecyclerView;
 
@@ -34,7 +36,6 @@ namespace ChatApp.Activities
         InvitationListener invitationListener;
         AcceptFriendListener acceptFriendListener;
 
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -46,9 +47,16 @@ namespace ChatApp.Activities
             SetupRecyclerView();
             // Create your application here
         }
+       
+        private void SetupToolbar()
+        {
+            toolbarInvitations = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbarInvitations);
+            SetSupportActionBar(toolbarInvitations);
+        }
 
         private void ConnectViews()
         {
+            SetupToolbar();
             invitationsListRecyclerView = FindViewById<RecyclerView>(Resource.Id.invitationsListRecyclerView);
             backarrowInvitationsImageView = FindViewById<ImageView>(Resource.Id.backarrowInvitationsImageView);
             backarrowInvitationsImageView.Click += (s, args) =>
@@ -57,6 +65,8 @@ namespace ChatApp.Activities
                 Finish();
             };
         }
+
+
         private void SetupRecyclerView()
         {
 
@@ -88,13 +98,15 @@ namespace ChatApp.Activities
 
         private void Listener_OnUserRetrieved(object sender, UserDataListener.UserEventArgs e)
         {
-            users.Add(e.UserData);
-            if (users.Count > 0)
+            if (!users.Contains(e.UserData))
             {
-                users.OrderBy(x => x.Fullname).ToList();
+                users.Add(e.UserData);
+                if (users.Count > 0)
+                {
+                    users.OrderBy(x => x.Fullname).ToList();
+                }
+                SetupRecyclerView();
             }
-            SetupRecyclerView();
-
         }
     }
 }

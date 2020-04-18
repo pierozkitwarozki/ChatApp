@@ -18,7 +18,8 @@ namespace ChatApp.Activities
     public class MainActivity : AppCompatActivity
     {
         //Controls
-        Android.Support.V7.Widget.Toolbar toolbarMain;       
+        Android.Support.V7.Widget.Toolbar toolbarMain;
+        Android.Support.V4.Widget.SwipeRefreshLayout swipeRefresh;
         RecyclerView messagesRecyclerView;
         MessagePreviewAdapter messageAdapter;
         TextView toolbarMainTitle;
@@ -34,7 +35,7 @@ namespace ChatApp.Activities
 
 
         //Data
-        List<Conversation> conversations = new List<Conversation>();
+        List<Conversation> conversations;
         
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -43,15 +44,22 @@ namespace ChatApp.Activities
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+            conversations = new List<Conversation>();
             fullnameListener = new FullnameListener();  
             fullnameListener.FetchUser();
-           // CreateData();
             ConnectViews();
+            if (conversations.Count == 0)
+            {   
+                GetConversations();
+            }
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
             GetConversations();
-            SetupRecyclerView();
+        }
 
-        }        
-        
+
         private void SetupToolbar()
         {
             toolbarMain = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -61,6 +69,7 @@ namespace ChatApp.Activities
         private void ConnectViews()
         {
             SetupToolbar();
+            swipeRefresh = FindViewById<Android.Support.V4.Widget.SwipeRefreshLayout>(Resource.Id.swipeRefresh);
             messagesRecyclerView = FindViewById<RecyclerView>(Resource.Id.postRecyclerView);
             toolbarMainTitle = FindViewById<TextView>(Resource.Id.titleMain);
             messageImageView = FindViewById<ImageView>(Resource.Id.messageImageView);
@@ -72,6 +81,13 @@ namespace ChatApp.Activities
             messageImageView.Click += MessageImageView_Click;
             profileImageView.Click += ProfileImageView_Click;
             settingsImageView.Click += SettingsImageView_Click;
+            swipeRefresh.Refresh += SwipeRefresh_Refresh;
+        }
+
+        private void SwipeRefresh_Refresh(object sender, EventArgs e)
+        {
+            GetConversations();
+            swipeRefresh.Refreshing = false;
         }
 
         private void SettingsImageView_Click(object sender, EventArgs e)
@@ -119,7 +135,7 @@ namespace ChatApp.Activities
         private void GetConversations()
         {
             conversationListener = new ConversationListener();
-            conversationListener.FetchConversations();
+            conversationListener.FetchConversations(this);
             conversationListener.OnConversationRetrieved += (s, args) =>
             {
                 conversations = args.ConversationChat;

@@ -15,6 +15,7 @@ namespace ChatApp.EventListeners
 {
     public class TaskComplitionListener: Java.Lang.Object, IOnSuccessListener, IOnFailureListener
     {
+        //This class is responsible for handling logging in and registration results
         public event EventHandler<TaskSuccessEventArgs> Success;
         public event EventHandler<TaskFailureEventArgs> Failure;
         public class TaskFailureEventArgs : EventArgs
