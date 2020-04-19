@@ -7,7 +7,7 @@
     android:layout_height="80dp">
 
     <RelativeLayout       
-        android:background="@color/colorDarkGrey"
+        android:background="@drawable/recycler_view_item_background_pressed"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <de.hdodenhof.circleimageview.CircleImageView

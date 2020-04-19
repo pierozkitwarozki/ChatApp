@@ -32,7 +32,7 @@ namespace ChatApp.Activities
         EditText passwordSignUpEditText;
         EditText confirmPasswordSignUpEditText;
         Button signUpButton;
-        ImageView backarrowImageView;
+        ImageButton backarrowImageView;
         _BaseCircleImageView registerCircleImageView;
         ProgressDialogFragment progressDialogFragment;
 
@@ -77,7 +77,7 @@ namespace ChatApp.Activities
             confirmPasswordSignUpEditText = FindViewById<EditText>(Resource.Id.confirmPasswordSignUpEditText);
             signUpButton = FindViewById<Button>(Resource.Id.signUpButton);
             registerCircleImageView = FindViewById<_BaseCircleImageView>(Resource.Id.registerCircleImageView);
-            backarrowImageView = FindViewById<ImageView>(Resource.Id.backarrowImageView);
+            backarrowImageView = FindViewById<ImageButton>(Resource.Id.backarrowImageView);
             signUpButton.Click += SignUpButton_Click;
             backarrowImageView.Click += BackarrowImageView_Click;
             registerCircleImageView.Click += RegisterCircleImageView_Click;
@@ -110,8 +110,7 @@ namespace ChatApp.Activities
 
         private void BackarrowImageView_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(LoginActivity));
-            Finish();
+            base.OnBackPressed();
         }
 
         private void SetupToolbar()

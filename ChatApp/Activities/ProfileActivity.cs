@@ -24,7 +24,7 @@ namespace ChatApp.Activities
         //Views
         Android.Support.V7.Widget.Toolbar toolbarProfile;
         _BaseCircleImageView profileCircleImageView;
-        ImageView backarrowProfileImageView;
+        ImageButton backarrowProfileImageView;
         Button logOutButton;
         TextView fullnameProfileTextView;
         TextView friendsProfileTextView;
@@ -57,7 +57,7 @@ namespace ChatApp.Activities
             invitationsProfileTextView = FindViewById<TextView>(Resource.Id.invitationsProfileTextView);
             fullnameProfileTextView = FindViewById<TextView>(Resource.Id.fullnameProfileTextView);
             profileCircleImageView = FindViewById<_BaseCircleImageView>(Resource.Id.profileCircleImageView);
-            backarrowProfileImageView = FindViewById<ImageView>(Resource.Id.backarrowProfileImageView);
+            backarrowProfileImageView = FindViewById<ImageButton>(Resource.Id.backarrowProfileImageView);
             logOutButton = FindViewById<Button>(Resource.Id.logOutButton);
             Helpers.Helper.GetCircleImage(Helpers.Helper.GetImageUrl(), profileCircleImageView);
             fullnameProfileTextView.Text = Helpers.Helper.GetFullName();

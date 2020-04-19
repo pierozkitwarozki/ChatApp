@@ -10,7 +10,7 @@ using ChatApp.EventListeners;
 
 namespace ChatApp.Adapters
 {
-    public class InvitationAdapter : RecyclerView.Adapter
+    class InvitationAdapter : RecyclerView.Adapter
     {
         public event EventHandler<InvitationAdapterClickEventArgs> ItemClick;
         public event EventHandler<InvitationAdapterClickEventArgs> ItemLongClick;

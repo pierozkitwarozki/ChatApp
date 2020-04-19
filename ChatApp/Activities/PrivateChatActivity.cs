@@ -27,7 +27,7 @@ namespace ChatApp.Activities
         TextView fullnamePrivateChateTextView;
         EditText typeMessagePrivateChatEditText;
         RecyclerView chatBodyPrivateChatRecyclerView;
-        ImageView backarrowPrivateChatImageView;
+        ImageButton backarrowPrivateChatImageView;
         ImageView sendMessagePrivateChatImageView;
         _BaseCircleImageView profileImagePrivateChatImageView;
 
@@ -38,7 +38,7 @@ namespace ChatApp.Activities
         MessagesListener listener;
         SendMessageManageListener send;
 
-        //List
+        //Data
         List<BaseMessage> messagesList = new List<BaseMessage>();
         Conversation conversation;
 
@@ -65,7 +65,7 @@ namespace ChatApp.Activities
             fullnamePrivateChateTextView = FindViewById<TextView>(Resource.Id.fullnamePrivateChateTextView);
             typeMessagePrivateChatEditText = FindViewById<EditText>(Resource.Id.typeMessagePrivateChatEditText);
             chatBodyPrivateChatRecyclerView = FindViewById<RecyclerView>(Resource.Id.chatBodyPrivateChatRecyclerView);
-            backarrowPrivateChatImageView = FindViewById<ImageView>(Resource.Id.backarrowPrivateChatImageView);
+            backarrowPrivateChatImageView = FindViewById<ImageButton>(Resource.Id.backarrowPrivateChatImageView);
             sendMessagePrivateChatImageView = FindViewById<ImageView>(Resource.Id.sendMessagePrivateChatImageView);
             sendMessagePrivateChatImageView.Click += SendMessagePrivateChatImageView_Click;
             fullnamePrivateChateTextView.Text = conversation.ProfileName;
@@ -81,13 +81,17 @@ namespace ChatApp.Activities
 
         private void SendMessagePrivateChatImageView_Click(object sender, EventArgs e)
         {
-            send = new SendMessageManageListener(Helpers.Helper.GetUserId(),
+            if (typeMessagePrivateChatEditText.Text != "")
+            {
+                send = new SendMessageManageListener(Helpers.Helper.GetUserId(),
                 conversation.UserId, typeMessagePrivateChatEditText.Text,
                 conversation.ProfileName,
                 conversation.ProfileImageUrl); ;
-            typeMessagePrivateChatEditText.Text = "";
-            chatBodyPrivateChatRecyclerView.ScrollToPosition(chatBodyPrivateChatRecyclerView.GetAdapter().ItemCount - 1);
-            send.SendMessage();
+                typeMessagePrivateChatEditText.Text = "";
+                chatBodyPrivateChatRecyclerView.ScrollToPosition(chatBodyPrivateChatRecyclerView.GetAdapter().ItemCount - 1);
+                send.SendMessage();
+            }
+            
         }
 
         private void SetupRecyclerView()
@@ -111,7 +115,7 @@ namespace ChatApp.Activities
                      messagesList.Sort((x, y) => DateTime.Compare(x.MessageDateTime, y.MessageDateTime));
                   }
                   SetupRecyclerView();
-                  chatBodyPrivateChatRecyclerView.SmoothScrollToPosition(chatBodyPrivateChatRecyclerView.GetAdapter().ItemCount - 1);
+                  chatBodyPrivateChatRecyclerView.ScrollToPosition(chatBodyPrivateChatRecyclerView.GetAdapter().ItemCount - 1);
               };
 
         }

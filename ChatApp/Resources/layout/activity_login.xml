@@ -12,10 +12,10 @@
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
     android:id="@+id/view"
-    android:src="@drawable/background_img"
+    android:src="@drawable/background_v6"
     android:scaleType="centerCrop" />
     <TextView
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="43dp"
         android:layout_below="@+id/mainLayout"
         android:textSize="27sp"
         android:textColor="@color/colorLightAsh"
@@ -85,7 +85,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/passwordEditText"
                 android:textSize="12sp"
-                android:textColor="@color/colorLightAsh"
+                android:textColor="@drawable/text_color_pressed_effect_reverse"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp"                
                 android:text="Forgot password?"
@@ -125,7 +125,7 @@
             android:layout_marginRight="80dp"
             android:layout_alignParentRight="true"
             android:textStyle="bold"
-            android:textColor="@color/colorGreen"
+            android:textColor="@drawable/text_color_pressed_effect_reverse"
             android:text="SIGN UP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

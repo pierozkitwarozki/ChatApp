@@ -15,14 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-            <ImageView
+            <ImageButton
+                android:background="@drawable/backarrow_pressed_effect"
                 android:id="@+id/backarrowProfileImageView"
                 android:src="@drawable/backarrow"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:layout_width="16dp"
-                android:layout_height="16dp"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
             <TextView
                 android:textStyle="bold"
                 android:textSize="20sp"
@@ -60,12 +61,12 @@
         android:layout_marginTop="20dp"
         />
            
-            <TextView   
+            <TextView         
         android:id="@+id/friendsProfileTextView"        
         android:layout_marginTop="40dp"        
         android:layout_width="match_parent"
         android:layout_height="35dp"                
-        android:textColor="@color/colorLightAsh"
+        android:textColor="@drawable/text_color_pressed_effect"
         android:text="Friends"
         android:gravity="center"        
         android:textSize="18sp"        
@@ -75,7 +76,7 @@
         android:layout_marginTop="10dp"        
         android:layout_width="match_parent"
         android:layout_height="35dp"                
-        android:textColor="@color/colorLightAsh"
+        android:textColor="@drawable/text_color_pressed_effect"
         android:text="Invitations"
         android:gravity="center"        
         android:textSize="18sp"        
@@ -85,7 +86,7 @@
         android:layout_marginTop="10dp"        
         android:layout_width="match_parent"
         android:layout_height="35dp"                
-        android:textColor="@color/colorLightAsh"
+        android:textColor="@drawable/text_color_pressed_effect"
         android:text="Change password"
         android:gravity="center"        
         android:textSize="18sp"        
@@ -96,7 +97,7 @@
         android:layout_marginBottom="70dp"        
         android:layout_width="match_parent"
         android:layout_height="35dp"                
-        android:textColor="@color/colorLightAsh"
+        android:textColor="@drawable/text_color_pressed_effect"
         android:text="Delete Account"
         android:gravity="center"        
         android:textSize="18sp"        

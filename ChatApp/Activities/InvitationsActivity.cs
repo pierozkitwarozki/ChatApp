@@ -23,7 +23,7 @@ namespace ChatApp.Activities
 
         //Controls
         Android.Support.V7.Widget.Toolbar toolbarInvitations;
-        ImageView backarrowInvitationsImageView;
+        ImageButton backarrowInvitationsImageView;
         RecyclerView invitationsListRecyclerView;
 
         //Adapters
@@ -58,7 +58,7 @@ namespace ChatApp.Activities
         {
             SetupToolbar();
             invitationsListRecyclerView = FindViewById<RecyclerView>(Resource.Id.invitationsListRecyclerView);
-            backarrowInvitationsImageView = FindViewById<ImageView>(Resource.Id.backarrowInvitationsImageView);
+            backarrowInvitationsImageView = FindViewById<ImageButton>(Resource.Id.backarrowInvitationsImageView);
             backarrowInvitationsImageView.Click += (s, args) =>
             {
                 base.OnBackPressed();

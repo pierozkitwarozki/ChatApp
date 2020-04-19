@@ -15,14 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-             <ImageView
+             <ImageButton
+                android:background="@drawable/backarrow_pressed_effect"
                 android:id="@+id/backarrowFriendsImageView"
                 android:src="@drawable/backarrow"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:layout_width="16dp"
-                android:layout_height="16dp"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
             <TextView
                 android:id="@+id/friendsTitleTextView"
                 android:textStyle="bold"
@@ -32,14 +33,17 @@
                 android:text="Friends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <ImageView
+            <ImageButton
+                android:scaleType="centerCrop"
                 android:id="@+id/addFriendsImageView"
-                android:src="@drawable/plus"
+                android:background="@drawable/backarrow_pressed_effect"
                 android:layout_alignParentRight="true"
+                android:src="@drawable/plus"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:layout_width="26dp"
-                android:layout_height="26dp"/>
+                android:layout_marginRight="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
     

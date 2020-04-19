@@ -29,8 +29,8 @@ namespace ChatApp.Activities
         Android.Support.V7.Widget.Toolbar toolbarFriends;
         RecyclerView friendListRecyclerView;
         FriendsListAdapter friendsListAdapter;
-        ImageView backarrowFriendsImageView;
-        ImageView addFriendsImageView;
+        ImageButton backarrowFriendsImageView;
+        ImageButton addFriendsImageView;
         AddFriendFragment addFriendFragment;
         ManageFriendFragment manageFriendFragment;
         SendMessageManageFragment sendMessageManageFragment;
@@ -71,8 +71,8 @@ namespace ChatApp.Activities
         {
             SetupToolbar();
             friendListRecyclerView = FindViewById<RecyclerView>(Resource.Id.friendListRecyclerView);
-            backarrowFriendsImageView = FindViewById<ImageView>(Resource.Id.backarrowFriendsImageView);
-            addFriendsImageView = FindViewById<ImageView>(Resource.Id.addFriendsImageView);
+            backarrowFriendsImageView = FindViewById<ImageButton>(Resource.Id.backarrowFriendsImageView);
+            addFriendsImageView = FindViewById<ImageButton>(Resource.Id.addFriendsImageView);
             addFriendsImageView.Click += AddFriendsImageView_Click;
             backarrowFriendsImageView.Click += (s, args) =>
               {

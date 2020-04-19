@@ -46,7 +46,13 @@ namespace ChatApp.Adapters
             holder.textPreviewTextView.Text = item.LastMessagePreview;
             holder.namePreviewTextView.Text = item.ProfileName;
             Helpers.Helper.GetCircleImage(item.ProfileImageUrl, holder.profilePreviewImageView);
-            holder.datePreviewTextView.Text = item.LastMessageDate.ToString("dd MM yyyy HH:mm:ss");
+            //holder.datePreviewTextView.Text = item.LastMessageDate.ToString("dd MM yyyy HH:mm:ss");
+            holder.datePreviewTextView.Text = String.Format("{0}.{1}.{2} {3}:{4}",
+                item.LastMessageDate.Day.ToString(),
+                item.LastMessageDate.Month.ToString(),
+                item.LastMessageDate.Year.ToString(),
+                item.LastMessageDate.Hour.ToString(),
+                item.LastMessageDate.Minute.ToString());
         }
 
         public override int ItemCount => previewList.Count;

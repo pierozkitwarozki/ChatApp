@@ -18,7 +18,7 @@ namespace ChatApp.Activities
     {
         //Controls
         Android.Support.V7.Widget.Toolbar toolbarSettings;
-        ImageView backarrowSettingsImageView;
+        ImageButton backarrowSettingsImageView;
         Button exitButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -36,7 +36,7 @@ namespace ChatApp.Activities
         private void ConnectViews()
         {
             SetupToolbar();
-            backarrowSettingsImageView = FindViewById<ImageView>(Resource.Id.backarrowSettingsImageView);
+            backarrowSettingsImageView = FindViewById<ImageButton>(Resource.Id.backarrowSettingsImageView);
             exitButton = FindViewById<Button>(Resource.Id.exitButton);
             backarrowSettingsImageView.Click += (s, args) =>
             {

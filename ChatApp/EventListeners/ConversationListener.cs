@@ -35,7 +35,6 @@ namespace ChatApp.EventListeners
         }
         public void OnEvent(Java.Lang.Object value, FirebaseFirestoreException error)
         {
-            Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             var snapshotQuery = (QuerySnapshot)value;
             if (!snapshotQuery.IsEmpty)
             {
@@ -114,18 +113,6 @@ namespace ChatApp.EventListeners
             
         }
 
-        public void RemoveListener()
-        {
-            var listener = FirebaseBackend.FirebaseBackend
-                .GetFireStore()
-                .Collection("chats")
-                .AddSnapshotListener(this);
-            if (listener != null)
-            {
-                listener.Remove();
-                listener = null;
-            }
-        }
     }
 
 }
