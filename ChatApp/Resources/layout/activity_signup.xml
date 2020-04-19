@@ -90,23 +90,7 @@
         android:textSize="12sp"
         android:background="@drawable/curvededges_EditText"
     />
-    <EditText   
-        android:id="@+id/usernameSignUpEditText"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
-        android:elevation="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:imeOptions="actionNext"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorLightAsh"
-        android:hint="Username"
-        android:gravity="center"
-        android:textColorHint="@color/colorLightAsh"
-        android:textSize="12sp"
-        android:background="@drawable/curvededges_EditText"
-    />
+    
     <EditText   
         android:id="@+id/passwordSignUpEditText"
         android:layout_marginLeft="40dp"

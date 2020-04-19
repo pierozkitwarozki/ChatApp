@@ -29,7 +29,6 @@ namespace ChatApp.Activities
         Android.Support.V7.Widget.Toolbar toolbar;
         EditText fullnameSignUpEditText;
         EditText emailSignUpEditText;
-        EditText usernameSignUpEditText;
         EditText passwordSignUpEditText;
         EditText confirmPasswordSignUpEditText;
         Button signUpButton;
@@ -74,7 +73,6 @@ namespace ChatApp.Activities
         {
             fullnameSignUpEditText = FindViewById<EditText>(Resource.Id.fullnameSignUpEditText);
             emailSignUpEditText = FindViewById<EditText>(Resource.Id.emailSignUpEditText);
-            usernameSignUpEditText = FindViewById<EditText>(Resource.Id.usernameSignUpEditText);
             passwordSignUpEditText = FindViewById<EditText>(Resource.Id.passwordSignUpEditText);
             confirmPasswordSignUpEditText = FindViewById<EditText>(Resource.Id.confirmPasswordSignUpEditText);
             signUpButton = FindViewById<Button>(Resource.Id.signUpButton);
@@ -126,8 +124,7 @@ namespace ChatApp.Activities
         private void SignUpButton_Click(object sender, EventArgs e)
         {
             SignUp(fullnameSignUpEditText.Text,
-                emailSignUpEditText.Text,
-                usernameSignUpEditText.Text,
+                emailSignUpEditText.Text,               
                 passwordSignUpEditText.Text,
                 confirmPasswordSignUpEditText.Text);
 
@@ -177,7 +174,7 @@ namespace ChatApp.Activities
             Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
             registerCircleImageView.SetImageBitmap(bitmap);
         }
-        private void SignUp(string fullname, string email, string username, string password, string confirmPassword)
+        private void SignUp(string fullname, string email, string password, string confirmPassword)
         {
             //Register funcionality
             if (!Helpers.Helper.IsValidEmail(email))
@@ -210,7 +207,6 @@ namespace ChatApp.Activities
                 
                 string userId = userReference.Id;
                 userMap.Put("email", email);
-                userMap.Put("username", username);
                 userMap.Put("fullname", fullname);
                 userReference.Set(userMap);
                 SetupPrototipeCollections();

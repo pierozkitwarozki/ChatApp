@@ -40,8 +40,7 @@ namespace ChatApp.Activities
             exitButton = FindViewById<Button>(Resource.Id.exitButton);
             backarrowSettingsImageView.Click += (s, args) =>
             {
-                StartActivity(typeof(MainActivity));
-                Finish();
+                base.OnBackPressed();
             };
             exitButton.Click += (s, args) =>
             {

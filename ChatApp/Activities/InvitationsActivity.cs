@@ -61,8 +61,7 @@ namespace ChatApp.Activities
             backarrowInvitationsImageView = FindViewById<ImageView>(Resource.Id.backarrowInvitationsImageView);
             backarrowInvitationsImageView.Click += (s, args) =>
             {
-                StartActivity(typeof(ProfileActivity));
-                Finish();
+                base.OnBackPressed();
             };
         }
 

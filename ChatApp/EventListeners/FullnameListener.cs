@@ -36,11 +36,9 @@ namespace ChatApp.EventListeners
             {
                 
                 string fullname = snapshot.Get("fullname").ToString();
-                string username = snapshot.Get("username").ToString();
                 string email = snapshot.Get("email").ToString();
                 string image_url = snapshot.Get("image_id") != null ? snapshot.Get("image_id").ToString() : "";
                 Helper.SaveFullname(fullname);
-                Helper.SaveUsername(username);
                 Helper.SaveImageUrl(image_url);
                 Helper.SaveEmail(email);
                 

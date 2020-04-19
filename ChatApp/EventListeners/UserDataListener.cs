@@ -42,7 +42,6 @@ namespace ChatApp.EventListeners
                 {
                     Image_Url = snap.Get("image_id") != null ? snap.Get("image_id").ToString() : "",
                     Fullname = snap.Get("fullname").ToString(),
-                    Username = snap.Get("username").ToString(),
                     User_Id = snap.Id.ToString(),
                     Email = snap.Get("email").ToString()
                 };         

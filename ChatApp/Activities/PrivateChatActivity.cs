@@ -76,8 +76,7 @@ namespace ChatApp.Activities
         private void BackarrowPrivateChatImageView_Click(object sender, EventArgs e)
         {
             //listener.RemoveListener();
-            StartActivity(typeof(MainActivity));
-            Finish();
+            base.OnBackPressed();
         }
 
         private void SendMessagePrivateChatImageView_Click(object sender, EventArgs e)

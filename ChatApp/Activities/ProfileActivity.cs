@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using ChatApp.DataModels;
 using ChatApp.EventListeners;
+using ChatApp.Fragments;
 using Newtonsoft.Json;
 using Refractored.Controls;
 
@@ -20,7 +21,7 @@ namespace ChatApp.Activities
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class ProfileActivity : AppCompatActivity
     {
-        //Controls
+        //Views
         Android.Support.V7.Widget.Toolbar toolbarProfile;
         _BaseCircleImageView profileCircleImageView;
         ImageView backarrowProfileImageView;
@@ -28,6 +29,12 @@ namespace ChatApp.Activities
         TextView fullnameProfileTextView;
         TextView friendsProfileTextView;
         TextView invitationsProfileTextView;
+        TextView changePasswordProfileTextView;
+        TextView deleteAccountProfileTextView;
+        ResetPasswordFragment resetPasswordFragment;
+
+        //Listener
+        ResetPasswordListener resetListener;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -45,21 +52,22 @@ namespace ChatApp.Activities
         {
             SetupToolbar();
             friendsProfileTextView = FindViewById<TextView>(Resource.Id.friendsProfileTextView);
+            changePasswordProfileTextView = FindViewById<TextView>(Resource.Id.changePasswordProfileTextView);
+            deleteAccountProfileTextView = FindViewById<TextView>(Resource.Id.deleteAccountProfileTextView);
             invitationsProfileTextView = FindViewById<TextView>(Resource.Id.invitationsProfileTextView);
             fullnameProfileTextView = FindViewById<TextView>(Resource.Id.fullnameProfileTextView);
             profileCircleImageView = FindViewById<_BaseCircleImageView>(Resource.Id.profileCircleImageView);
             backarrowProfileImageView = FindViewById<ImageView>(Resource.Id.backarrowProfileImageView);
-            invitationsProfileTextView.Click += (s, args) =>
-              {
-                  StartActivity(typeof(InvitationsActivity));
-              };
             logOutButton = FindViewById<Button>(Resource.Id.logOutButton);
             Helpers.Helper.GetCircleImage(Helpers.Helper.GetImageUrl(), profileCircleImageView);
             fullnameProfileTextView.Text = Helpers.Helper.GetFullName();
+            invitationsProfileTextView.Click += (s, args) =>
+              {
+                  StartActivity(typeof(InvitationsActivity));
+              };                       
             backarrowProfileImageView.Click += (s, args) =>
             {
-                StartActivity(typeof(MainActivity));
-                Finish();
+                base.OnBackPressed();
             };
             logOutButton.Click += (s, args) =>
             {
@@ -76,7 +84,53 @@ namespace ChatApp.Activities
             {               
                 StartActivity(typeof(FirendsActivity));
             };
+            changePasswordProfileTextView.Click += ChangePasswordProfileTextView_Click;
+            deleteAccountProfileTextView.Click += DeleteAccountProfileTextView_Click;
         }
 
+        private void DeleteAccountProfileTextView_Click(object sender, EventArgs e)
+        {
+            Toast.MakeText(this, "Feature to be added in future...", ToastLength.Short).Show();
+        }
+
+        private void ChangePasswordProfileTextView_Click(object sender, EventArgs e)
+        {
+            resetListener = new ResetPasswordListener();
+            resetPasswordFragment = new ResetPasswordFragment();
+            var trans = SupportFragmentManager.BeginTransaction();
+            resetPasswordFragment.Cancelable = true;
+            resetPasswordFragment.Show(trans, "reset_password");
+            resetPasswordFragment.OnPasswordReset += (s, args) =>
+            {
+                string email = args.Email;
+                Android.Support.V7.App.AlertDialog.Builder confirmResetDialog =
+               new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AppCompatAlertDialogStyle);
+                confirmResetDialog.SetMessage("Reset password?");
+
+                confirmResetDialog.SetNegativeButton("Cancel", (thisalert, args) =>
+                {
+                    resetPasswordFragment.Dismiss();
+                });
+                confirmResetDialog.SetPositiveButton("Reset", (thisalert, args) =>
+                {
+                    if (email == Helpers.Helper.GetEmail())
+                    {
+                        resetListener.ResetPassword(FirebaseBackend.FirebaseBackend.GetFireAuth(), email);
+                        resetPasswordFragment.Dismiss();
+                    }
+                    else Toast.MakeText(this, "Please confirm your email", ToastLength.Long).Show();                    
+                    
+                });
+                confirmResetDialog.Show();
+            };
+            resetListener.listener.Failure += (s, args) =>
+            {
+                Toast.MakeText(this, "Password failed to reset due to an error: " + args.Cause, ToastLength.Long).Show();
+            };
+            resetListener.listener.Success += (s, args) =>
+            {
+                Toast.MakeText(this, "Check your mail box", ToastLength.Short).Show();
+            };
+        }
     }
 }

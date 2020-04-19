@@ -58,13 +58,7 @@ namespace ChatApp.Helpers
             string fullname = "";
             fullname = preferences.GetString("fullname", "");
             return fullname;
-        }
-        public static void SaveUsername(string username)
-        {
-            editor = preferences.Edit();
-            editor.PutString("username", username);
-            editor.Apply();
-        }
+        }    
 
         public static void SaveEmail(string email)
         {
@@ -86,12 +80,6 @@ namespace ChatApp.Helpers
             editor.Apply();
         }
 
-        public static string GetUsername()
-        {
-            string username = "";
-            username = preferences.GetString("username", "");
-            return username;
-        }
 
         public static string GetUserId()
         {
@@ -176,6 +164,8 @@ namespace ChatApp.Helpers
             editor.Clear();
             editor.Apply();
         }
+
+
 
 
 

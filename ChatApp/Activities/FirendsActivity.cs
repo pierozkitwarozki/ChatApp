@@ -22,7 +22,10 @@ namespace ChatApp.Activities
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = false)]
     public class FirendsActivity : AppCompatActivity
     {
-        //Controls
+        // This class implements:
+        // Viewing friendlist, adding friend, managing friends    
+
+        //Views
         Android.Support.V7.Widget.Toolbar toolbarFriends;
         RecyclerView friendListRecyclerView;
         FriendsListAdapter friendsListAdapter;
@@ -122,13 +125,17 @@ namespace ChatApp.Activities
             };
             addFriendFragment.OnFriendAdd += (s, args) =>
             {
-                if (args.FriendEmail != Helpers.Helper.GetEmail())
+                if (args.FriendEmail != Helpers.Helper.GetEmail() && users.FirstOrDefault<User>(x => x.Email == args.FriendEmail) == null)
                 {
                     friendAddListener.InviteFriend(this, args.FriendEmail);
                 }
-                else
+                else if(args.FriendEmail == Helpers.Helper.GetEmail())
                 {
                     Toast.MakeText(this, "You cannot invite yourself", ToastLength.Short).Show();
+                }
+                else if (users.FirstOrDefault<User>(x => x.Email == args.FriendEmail) != null)
+                {
+                    Toast.MakeText(this, "You are already friends", ToastLength.Short).Show();
                 }
                 
             };

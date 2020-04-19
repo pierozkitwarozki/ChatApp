@@ -81,12 +81,12 @@
         android:textSize="18sp"        
         />
             <TextView   
-        android:id="@+id/personalsProfileTextView"        
+        android:id="@+id/changePasswordProfileTextView"        
         android:layout_marginTop="10dp"        
         android:layout_width="match_parent"
         android:layout_height="35dp"                
         android:textColor="@color/colorLightAsh"
-        android:text="Personals"
+        android:text="Change password"
         android:gravity="center"        
         android:textSize="18sp"        
         />

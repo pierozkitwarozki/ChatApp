@@ -84,6 +84,7 @@
     <Compile Include="EventListeners\FullnameListener.cs" />
     <Compile Include="EventListeners\InvitationListener.cs" />
     <Compile Include="EventListeners\MessagesListener.cs" />
+    <Compile Include="EventListeners\ResetPasswordListener.cs" />
     <Compile Include="EventListeners\SendMessageManageListener.cs" />
     <Compile Include="EventListeners\TaskComplitionListener.cs" />
     <Compile Include="EventListeners\UserDataListener.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Fragments\AddFriendFragment.cs" />
     <Compile Include="Fragments\ManageFriendFragment.cs" />
     <Compile Include="Fragments\ProgressDialogFragment.cs" />
+    <Compile Include="Fragments\ResetPasswordFragment.cs" />
     <Compile Include="Fragments\SendMessageManageFragment.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -110,8 +112,6 @@
     <AndroidResource Include="Resources\values\ic_launcher_background.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher_round.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_round.png" />
@@ -357,6 +357,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\item_message_sent.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\forgot_password.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

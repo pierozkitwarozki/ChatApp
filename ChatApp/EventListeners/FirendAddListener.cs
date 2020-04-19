@@ -69,7 +69,7 @@ namespace ChatApp.EventListeners
         {
             OnResult?.Invoke(this, new ResultEventArgs
             {
-                Result = "Inviting friend failed to an error: " + e.Message
+                Result = "Inviting friend failed due to an error: " + e.Message
             });
         }
 
