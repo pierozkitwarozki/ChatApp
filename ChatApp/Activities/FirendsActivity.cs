@@ -76,8 +76,7 @@ namespace ChatApp.Activities
             addFriendsImageView.Click += AddFriendsImageView_Click;
             backarrowFriendsImageView.Click += (s, args) =>
               {
-                  StartActivity(typeof(ProfileActivity));
-                  Finish();
+                  base.OnBackPressed();
               };
         }
 

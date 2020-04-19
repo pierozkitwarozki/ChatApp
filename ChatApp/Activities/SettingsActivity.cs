@@ -44,8 +44,7 @@ namespace ChatApp.Activities
             };
             exitButton.Click += (s, args) =>
             {
-                StartActivity(typeof(MainActivity));
-                Finish();
+                base.OnBackPressed();
             };
         }
     }

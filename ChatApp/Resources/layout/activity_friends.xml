@@ -42,11 +42,8 @@
                 android:layout_height="26dp"/>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-         <android.support.v7.widget.RecyclerView
-          android:layout_above="@+id/bottomBarLayout"
+    
+         <android.support.v7.widget.RecyclerView         
         android:id="@+id/friendListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,33 +52,7 @@
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
     />
-        <RelativeLayout
-            android:id="@+id/bottomBarLayout"
-            android:padding="25dp"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText   
-                android:id="@+id/typeFriendFriendsTextView"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:elevation="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName"
-                android:textColor="@color/colorLightAsh"
-                android:hint="Type friend..."
-                android:gravity="center"
-                android:textColorHint="@color/colorLightAsh"
-                android:textSize="12sp"
-                android:background="@drawable/curvededges_EditText"
-                />
-               
-        </RelativeLayout>
-    </RelativeLayout>
+   
 
    
    

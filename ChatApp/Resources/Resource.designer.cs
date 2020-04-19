@@ -4660,49 +4660,46 @@ namespace ChatApp
 			public const int transition_transform = 2131231002;
 			
 			// aapt resource value: 0x7F08011B
-			public const int typeFriendFriendsTextView = 2131231003;
+			public const int typeMessagePrivateChatEditText = 2131231003;
 			
 			// aapt resource value: 0x7F08011C
-			public const int typeMessagePrivateChatEditText = 2131231004;
+			public const int typeMessagePrivateChatLayout = 2131231004;
 			
 			// aapt resource value: 0x7F08011D
-			public const int typeMessagePrivateChatLayout = 2131231005;
+			public const int typeMessagePrivateChatTextView = 2131231005;
 			
 			// aapt resource value: 0x7F08011E
-			public const int typeMessagePrivateChatTextView = 2131231006;
+			public const int uniform = 2131231006;
 			
 			// aapt resource value: 0x7F08011F
-			public const int uniform = 2131231007;
+			public const int unlabeled = 2131231007;
 			
 			// aapt resource value: 0x7F080120
-			public const int unlabeled = 2131231008;
+			public const int up = 2131231008;
 			
 			// aapt resource value: 0x7F080121
-			public const int up = 2131231009;
+			public const int useLogo = 2131231009;
 			
 			// aapt resource value: 0x7F080122
-			public const int useLogo = 2131231010;
+			public const int view = 2131231010;
 			
 			// aapt resource value: 0x7F080123
-			public const int view = 2131231011;
+			public const int view_offset_helper = 2131231011;
 			
 			// aapt resource value: 0x7F080124
-			public const int view_offset_helper = 2131231012;
+			public const int visible = 2131231012;
 			
 			// aapt resource value: 0x7F080125
-			public const int visible = 2131231013;
+			public const int wide = 2131231013;
 			
 			// aapt resource value: 0x7F080126
-			public const int wide = 2131231014;
+			public const int withText = 2131231014;
 			
 			// aapt resource value: 0x7F080127
-			public const int withText = 2131231015;
+			public const int wrap = 2131231015;
 			
 			// aapt resource value: 0x7F080128
-			public const int wrap = 2131231016;
-			
-			// aapt resource value: 0x7F080129
-			public const int wrap_content = 2131231017;
+			public const int wrap_content = 2131231016;
 			
 			static Id()
 			{
