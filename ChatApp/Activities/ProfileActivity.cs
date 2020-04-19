@@ -69,23 +69,34 @@ namespace ChatApp.Activities
             {
                 base.OnBackPressed();
             };
-            logOutButton.Click += (s, args) =>
-            {
-                //MessagesListener listener = new MessagesListener();
-                //listener.RemoveListener();
-                FirebaseBackend.FirebaseBackend
-                  .GetFireAuth()
-                  .SignOut();
-                Helpers.Helper.ClearISharedPrefernces();
-                StartActivity(typeof(LoginActivity));
-                FinishAffinity();
-            };
+            logOutButton.Click += LogOutButton_Click;
             friendsProfileTextView.Click += (s, args) =>
             {               
                 StartActivity(typeof(FirendsActivity));
             };
             changePasswordProfileTextView.Click += ChangePasswordProfileTextView_Click;
             deleteAccountProfileTextView.Click += DeleteAccountProfileTextView_Click;
+        }
+
+        private void LogOutButton_Click(object sender, EventArgs e)
+        {
+            Android.Support.V7.App.AlertDialog.Builder confirmResetDialog =
+                    new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AppCompatAlertDialogStyle);
+            confirmResetDialog.SetMessage("Are you sure to log out?");
+            confirmResetDialog.SetNegativeButton("Cancel", (thisalert, args) =>
+            {
+                //Close dialog
+            });
+            confirmResetDialog.SetPositiveButton("Log out", (thisalert, args) =>
+            {
+                    FirebaseBackend.FirebaseBackend
+                 .GetFireAuth()
+                .SignOut();
+                    Helpers.Helper.ClearISharedPrefernces();
+                    StartActivity(typeof(LoginActivity));
+                    FinishAffinity();
+            });
+            confirmResetDialog.Show();
         }
 
         private void DeleteAccountProfileTextView_Click(object sender, EventArgs e)

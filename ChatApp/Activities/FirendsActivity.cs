@@ -161,6 +161,7 @@ namespace ChatApp.Activities
             Android.Support.V7.App.AlertDialog.Builder deleteAlert =
                 new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AppCompatAlertDialogStyle);
             deleteAlert.SetMessage("Delete " + e.UserArgs.Fullname + "?");
+            
 
             deleteAlert.SetNegativeButton("Cancel", (thisalert, args) =>
             {

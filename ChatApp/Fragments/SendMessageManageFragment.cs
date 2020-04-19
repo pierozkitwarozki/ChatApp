@@ -43,6 +43,7 @@ namespace ChatApp.Fragments
         {
             // Use this to return your custom view for this Fragment
             View view = inflater.Inflate(Resource.Layout.send_message, container, false);
+            this.Dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Android.Graphics.Color.Transparent));
             ConnectViews(view);
             return view;
         }

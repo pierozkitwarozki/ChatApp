@@ -4,7 +4,7 @@
     android:padding="25dp"
     android:minHeight="300dp"
     android:minWidth="300dp"
-    android:background="@color/colorDarkGrey"
+    android:background="@drawable/curvededges_fragment"
     android:layout_width="300dp"
     android:layout_height="wrap_content">
     <de.hdodenhof.circleimageview.CircleImageView

@@ -61,26 +61,35 @@ namespace ChatApp.Activities
         {
             resetListener = new ResetPasswordListener();
             resetPasswordFragment = new ResetPasswordFragment();
+            //this.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Android.Graphics.Color.Transparent));            
             var trans = SupportFragmentManager.BeginTransaction();
-            resetPasswordFragment.Cancelable = true;
+            resetPasswordFragment.Cancelable = true;            
             resetPasswordFragment.Show(trans, "reset_password");
             resetPasswordFragment.OnPasswordReset += (s, args) =>
             {
                 string email = args.Email;
-                Android.Support.V7.App.AlertDialog.Builder confirmResetDialog =
-               new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AppCompatAlertDialogStyle);
-                confirmResetDialog.SetMessage("Reset password?");
+                if(email != "")
+                {
+                    Android.Support.V7.App.AlertDialog.Builder confirmResetDialog =
+                    new Android.Support.V7.App.AlertDialog.Builder(this, Resource.Style.AppCompatAlertDialogStyle);
+                    confirmResetDialog.SetMessage("Reset password?");
 
-                confirmResetDialog.SetNegativeButton("Cancel", (thisalert, args) =>
+                    confirmResetDialog.SetNegativeButton("Cancel", (thisalert, args) =>
+                    {
+                        resetPasswordFragment.Dismiss();
+                    });
+                    confirmResetDialog.SetPositiveButton("Reset", (thisalert, args) =>
+                    {
+                        resetListener.ResetPassword(auth, email);
+                        resetPasswordFragment.Dismiss();
+                    });
+                    confirmResetDialog.Show();
+                }
+                else
                 {
-                    resetPasswordFragment.Dismiss();
-                });
-                confirmResetDialog.SetPositiveButton("Reset", (thisalert, args) =>
-                {
-                    resetListener.ResetPassword(auth, email);
-                    resetPasswordFragment.Dismiss();
-                });
-                confirmResetDialog.Show();
+                    Toast.MakeText(this, "Please enter an email", ToastLength.Short).Show();
+                }
+  
             };
             resetListener.listener.Failure += (s, args) =>
             {

@@ -17,7 +17,7 @@
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorGreen</item>
         <item name="android:textColorPrimary">@color/colorLightAsh</item>
-        <item name="android:background">@color/colorDarkGrey</item>
+        <item name="android:windowBackground">@drawable/curvededges_fragment</item>
     </style>
 
 

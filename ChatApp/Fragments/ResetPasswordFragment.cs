@@ -18,6 +18,7 @@ namespace ChatApp.Fragments
         EditText emailForgotEditText;
         Button resetPasswordButton;
 
+
         public event EventHandler<ResetPasswordEventArgs> OnPasswordReset;
 
         public class ResetPasswordEventArgs: EventArgs
@@ -38,6 +39,7 @@ namespace ChatApp.Fragments
             View view = inflater.Inflate(Resource.Layout.forgot_password, container, false);
             emailForgotEditText = view.FindViewById<EditText>(Resource.Id.emailForgotEditText);
             resetPasswordButton = view.FindViewById<Button>(Resource.Id.resetPasswordButton);
+            this.Dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Android.Graphics.Color.Transparent));
             resetPasswordButton.Click += (s, args) =>
             {
                 OnPasswordReset?.Invoke(this, new ResetPasswordEventArgs

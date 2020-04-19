@@ -35,6 +35,7 @@ namespace ChatApp.Fragments
             View view = inflater.Inflate(Resource.Layout.progress_dialog, container, false);
             TextView progressStatus = view.FindViewById<TextView>(Resource.Id.progressStatus);
             progressStatus.Text = thisStatus;
+            this.Dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Android.Graphics.Color.Transparent));
             return view;
         }
     }

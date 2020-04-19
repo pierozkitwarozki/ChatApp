@@ -35,6 +35,7 @@ namespace ChatApp.Fragments
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             View view = inflater.Inflate(Resource.Layout.add_friend, container, false);
+            this.Dialog.Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Android.Graphics.Color.Transparent));
             inviteButton = view.FindViewById<Button>(Resource.Id.inviteButton);
             inviteEditText = view.FindViewById<EditText>(Resource.Id.inviteEditText);
             inviteButton.Click += InviteButton_Click;
