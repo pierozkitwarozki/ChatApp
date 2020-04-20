@@ -16,7 +16,7 @@
     <layer-list>
       <item android:bottom="0dp" android:left="0dp">
         <shape>
-          <gradient android:angle="270" android:endColor="@color/colorLightGrey" android:startColor="@color/colorLightGrey"/>
+          <gradient android:angle="270" android:endColor="@color/colorAlmostBlack" android:startColor="@color/colorAlmostBlack"/>
         </shape>
       </item>
     </layer-list>
