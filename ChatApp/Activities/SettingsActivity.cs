@@ -20,6 +20,11 @@ namespace ChatApp.Activities
         Android.Support.V7.Widget.Toolbar toolbarSettings;
         ImageButton backarrowSettingsImageView;
         Button exitButton;
+        TextView notificationsSettingsTextView;
+        TextView privateModeSettingsTextView;
+        TextView defaultSettingsTextView;
+        TextView pinkModeSettingsTextView;
+        TextView saveSettingsTextView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -38,6 +43,18 @@ namespace ChatApp.Activities
             SetupToolbar();
             backarrowSettingsImageView = FindViewById<ImageButton>(Resource.Id.backarrowSettingsImageView);
             exitButton = FindViewById<Button>(Resource.Id.exitButton);
+            notificationsSettingsTextView = FindViewById<TextView>(Resource.Id.notificationsSettingsTextView);
+            defaultSettingsTextView = FindViewById<TextView>(Resource.Id.defaultSettingsTextView);
+            privateModeSettingsTextView = FindViewById<TextView>(Resource.Id.privateModeSettingsTextView);
+            pinkModeSettingsTextView = FindViewById<TextView>(Resource.Id.pinkModeSettingsTextView);
+            saveSettingsTextView = FindViewById<TextView>(Resource.Id.saveSettingsTextView);
+
+            notificationsSettingsTextView.Click += NotificationsSettingsTextView_Click;
+            defaultSettingsTextView.Click += NotificationsSettingsTextView_Click;
+            privateModeSettingsTextView.Click += NotificationsSettingsTextView_Click;
+            pinkModeSettingsTextView.Click += NotificationsSettingsTextView_Click;
+            saveSettingsTextView.Click += NotificationsSettingsTextView_Click;
+
             backarrowSettingsImageView.Click += (s, args) =>
             {
                 base.OnBackPressed();
@@ -46,6 +63,11 @@ namespace ChatApp.Activities
             {
                 base.OnBackPressed();
             };
+        }
+
+        private void NotificationsSettingsTextView_Click(object sender, EventArgs e)
+        {
+            Toast.MakeText(this, "Feature to be added in future...", ToastLength.Short).Show();
         }
     }
 }

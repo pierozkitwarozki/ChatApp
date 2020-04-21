@@ -120,7 +120,7 @@ namespace ChatApp.Activities
                 users.Add(e.UserData);
                 if (users.Count > 0)
                 {
-                    users.OrderBy(x => x.Fullname).ToList();
+                    users.Sort((x, y) => String.Compare(x.Fullname, y.Fullname));
                 }
                 SetupRecyclerView();
             }

@@ -19,5 +19,6 @@ namespace ChatApp.DataModels
         public string Image_Url { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
+
     }
 }

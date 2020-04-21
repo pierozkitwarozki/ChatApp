@@ -105,7 +105,7 @@ namespace ChatApp.Activities
             users.Add(e.UserData);
             if (users.Count > 0)
             {
-                users.OrderBy(x => x.Fullname).ToList();
+                users.Sort((x, y) => String.Compare(x.Fullname, y.Fullname));
             }
             SetupRecyclerView();
         }
@@ -189,6 +189,7 @@ namespace ChatApp.Activities
 
         private void SendMessageManageFragment_OnMessageSent(object sender, SendMessageManageFragment.MessageArgs e)
         {
+            
              sendMessageManageListener = new SendMessageManageListener(FirebaseBackend.FirebaseBackend.GetFireAuth().CurrentUser.Uid.ToString(),
                e.UserArgs.User_Id,
                e.BMessage.MessageBody,

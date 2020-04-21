@@ -191,7 +191,7 @@ namespace ChatApp.Activities
                 .AddOnFailureListener(registrationListener)
                 .AddOnSuccessListener(registrationListener);
 
-            string downloadUrl = "no photo";
+            string downloadUrl = "";
             HashMap userMap = new HashMap();
             StorageReference storageReference = null;
             DocumentReference userReference = null;
@@ -211,7 +211,8 @@ namespace ChatApp.Activities
                 SetupPrototipeCollections();
                 if (fileBytes != null)
                 {
-                    storageReference = FirebaseStorage.Instance.GetReference("userImages/" + userId);
+                    Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    storageReference = FirebaseStorage.Instance.GetReference("chatAppAvatars/" + userId);
                     storageReference.PutBytes(fileBytes)
                         .AddOnSuccessListener(listener)
                         .AddOnFailureListener(listener);
@@ -238,8 +239,11 @@ namespace ChatApp.Activities
             {
                 if (storageReference != null)
                 {
+                    Console.WriteLine("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
                     storageReference.DownloadUrl.AddOnSuccessListener(downloadUrlListener);
+                    //storageReference.DownloadUrl.AddOnSuccessListener(downloadUrlListener);
                 }
+                Console.WriteLine("NUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUL");
             };
             downloadUrlListener.Success += (success, args) =>
             {

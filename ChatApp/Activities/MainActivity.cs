@@ -11,6 +11,7 @@ using ChatApp.EventListeners;
 using ChatApp.DataModels;
 using Android.Content;
 using Newtonsoft.Json;
+using ChatApp.Fragments;
 
 namespace ChatApp.Activities
 {
@@ -28,6 +29,10 @@ namespace ChatApp.Activities
         ImageView createImageView;
         ImageView profileImageView;
         ImageView settingsImageView;
+
+        //Fragments
+        CreateFragment createFragment;
+        CreateNewMessageFragment createNewMessageFragment;
 
         //Listners
         FullnameListener fullnameListener;
@@ -82,6 +87,13 @@ namespace ChatApp.Activities
             profileImageView.Click += ProfileImageView_Click;
             settingsImageView.Click += SettingsImageView_Click;
             swipeRefresh.Refresh += SwipeRefresh_Refresh;
+            createImageView.Click += CreateImageView_Click;
+        }
+
+        private void CreateImageView_Click(object sender, EventArgs e)
+        {
+            createImageView.Activated = !createImageView.Activated;
+            ShowCreateNewDialog();
         }
 
         private void SwipeRefresh_Refresh(object sender, EventArgs e)
@@ -111,9 +123,10 @@ namespace ChatApp.Activities
         private void GroupChatImageView_Click(object sender, EventArgs e)
         {
             //Open group chat
-            toolbarMainTitle.Text = "Group chat";
-            messageImageView.SetImageResource(Resource.Drawable.message_grey);
-            groupChatImageView.SetImageResource(Resource.Drawable.group_chat_green);
+            //toolbarMainTitle.Text = "Group chat";
+            //messageImageView.SetImageResource(Resource.Drawable.message_grey);
+            //groupChatImageView.SetImageResource(Resource.Drawable.group_chat_green);
+            Toast.MakeText(this, "Feature to be added in future...", ToastLength.Short).Show();
         }
 
         private void SetupRecyclerView()
@@ -141,11 +154,30 @@ namespace ChatApp.Activities
                 conversations = args.ConversationChat;
                 if (conversations != null)
                 {
-                    conversations.Sort((x, y) => DateTime.Compare(y.LastMessageDate, x.LastMessageDate));
+                    conversations.Sort((x, y) => DateTime.Compare(y.LastMessageDate, x.LastMessageDate));                   
                 }
                 SetupRecyclerView();
             };
         }       
 
+        private void ShowCreateNewDialog()
+        {
+            createFragment = new CreateFragment();
+            var trans = SupportFragmentManager.BeginTransaction();
+            createFragment.OnNewGroupState += (s, e) => { Toast.MakeText(this, "New group", ToastLength.Short).Show(); };
+            createFragment.OnNewMessageState += CreateFragment_OnNewMessageState;
+            createFragment.Cancelable = true;
+            createFragment.Show(trans, "create_fragment");
+
+        }
+
+        private void CreateFragment_OnNewMessageState(object sender, EventArgs e)
+        {
+            createFragment.Dismiss();
+            createNewMessageFragment = new CreateNewMessageFragment();
+            var trans = SupportFragmentManager.BeginTransaction();
+            createNewMessageFragment.Cancelable = true;
+            createNewMessageFragment.Show(trans, "create_message");
+        }
     }
 }

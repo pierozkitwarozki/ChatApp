@@ -57,11 +57,15 @@ namespace ChatApp.Fragments
 
         private void SendManageFriendButton_Click(object sender, EventArgs e)
         {
-            OnMessageSent?.Invoke(this, new MessageArgs
+            if (messageBodyManageFriendEditText.Text != "")
             {
-                BMessage = new BaseMessage { MessageBody = messageBodyManageFriendEditText.Text},
-                UserArgs = user
-            }); 
+                OnMessageSent?.Invoke(this, new MessageArgs
+                {
+                    BMessage = new BaseMessage { MessageBody = messageBodyManageFriendEditText.Text },
+                    UserArgs = user
+                });
+            }
+            
         }
 
     }

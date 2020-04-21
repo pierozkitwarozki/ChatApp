@@ -29,6 +29,7 @@ namespace ChatApp.Activities
         RecyclerView chatBodyPrivateChatRecyclerView;
         ImageButton backarrowPrivateChatImageView;
         ImageView sendMessagePrivateChatImageView;
+        ImageView attachPhotoPrivateChatImageView;
         _BaseCircleImageView profileImagePrivateChatImageView;
 
         //Adapters
@@ -67,10 +68,12 @@ namespace ChatApp.Activities
             chatBodyPrivateChatRecyclerView = FindViewById<RecyclerView>(Resource.Id.chatBodyPrivateChatRecyclerView);
             backarrowPrivateChatImageView = FindViewById<ImageButton>(Resource.Id.backarrowPrivateChatImageView);
             sendMessagePrivateChatImageView = FindViewById<ImageView>(Resource.Id.sendMessagePrivateChatImageView);
+            attachPhotoPrivateChatImageView = FindViewById<ImageView>(Resource.Id.attachPhotoPrivateChatImageView);
             sendMessagePrivateChatImageView.Click += SendMessagePrivateChatImageView_Click;
             fullnamePrivateChateTextView.Text = conversation.ProfileName;
             Helpers.Helper.GetCircleImage(conversation.ProfileImageUrl, profileImagePrivateChatImageView);
             backarrowPrivateChatImageView.Click += BackarrowPrivateChatImageView_Click;
+            attachPhotoPrivateChatImageView.Click += (s, args) => { Toast.MakeText(this, "Feature to be added in future...", ToastLength.Short).Show(); };
         }
 
         private void BackarrowPrivateChatImageView_Click(object sender, EventArgs e)

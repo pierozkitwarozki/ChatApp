@@ -69,6 +69,7 @@
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
+    <Compile Include="Adapters\FriendArrayAdapter.cs" />
     <Compile Include="Adapters\FriendsListAdapter.cs" />
     <Compile Include="Adapters\InvitationAdapter.cs" />
     <Compile Include="Adapters\MessageListAdapter.cs" />
@@ -90,6 +91,8 @@
     <Compile Include="EventListeners\UserDataListener.cs" />
     <Compile Include="FirebaseBackend\FirebaseBackend.cs" />
     <Compile Include="Fragments\AddFriendFragment.cs" />
+    <Compile Include="Fragments\CreateFragment.cs" />
+    <Compile Include="Fragments\CreateNewMessageFragment.cs" />
     <Compile Include="Fragments\ManageFriendFragment.cs" />
     <Compile Include="Fragments\ProgressDialogFragment.cs" />
     <Compile Include="Fragments\ResetPasswordFragment.cs" />
@@ -215,9 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\group_chat_grey.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\create.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\profile_grey.png" />
@@ -388,6 +388,30 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\background_v5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\create_button_press.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\create_default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\create_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\create_new.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\create_group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\create_new_message.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\background_v6.png" />
